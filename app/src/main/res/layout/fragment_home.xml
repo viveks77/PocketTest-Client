@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".Activites.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolB"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_above="@id/tabL"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+
+        android:background="@color/colorPrimaryDark" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/black"
+        app:tabTextColor="@color/colorAccent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/upcoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upcoming Tests">
+
+        </com.google.android.material.tabs.TabItem>
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/ongoing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ongoing Tests">
+
+        </com.google.android.material.tabs.TabItem>
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabL"
+        />
+
+
+</RelativeLayout>

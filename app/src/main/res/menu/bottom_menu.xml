@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/nav_home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/nav_lecture"
+        android:icon="@drawable/nav_lectures"
+        android:title="Lectures" />
+   <item
+    android:id="@+id/nav_account"
+    android:icon="@drawable/nav_account"
+    android:title="My Account"/>
+
+
+</menu>
