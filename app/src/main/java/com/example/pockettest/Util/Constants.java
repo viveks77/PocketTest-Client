@@ -10,4 +10,6 @@ public class Constants {
     public static final String TOKEN = "token";
     public static final String MOBILE = "mobileNo";
     public static final String LOC = "location";
+
+
 }
