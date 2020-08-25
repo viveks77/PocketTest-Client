@@ -2,5 +2,8 @@
     <string name="app_name">PocketTest</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="account_edit_profile">Edit Profile</string>
+    <string name="account_starred_quiz">Starred Quizes</string>
+    <string name="account_quiz_taken">Given Quizes</string>
+    <string name="account_logout">Logout</string>
 </resources>
