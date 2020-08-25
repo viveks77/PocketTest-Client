@@ -78,9 +78,9 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
-    public void deleteUser(User user){
+    public void deleteUser(){
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(Constants.TABLE_NAME, Constants.EMAIL + "=?", new String[]{ user.getEmail() });
+        db.delete(Constants.TABLE_NAME, null, null);
         db.close();
     }
 }
