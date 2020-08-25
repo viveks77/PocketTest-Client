@@ -48,15 +48,14 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public User getUser(String email){
+    public User getUser(){
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = null;
         try{
 
-            cursor = db.query(Constants.TABLE_NAME, new String[] {Constants.NAME, Constants.EMAIL, Constants.MOBILE, Constants.LOC},
-                    Constants.EMAIL + "=?", new String[] { email },  null,null,null,null);
-
+            String rawQuery = "SELECT * FROM "+ Constants.TABLE_NAME;
+            cursor =db.rawQuery(rawQuery, null);
             if(cursor != null)
                 cursor.moveToFirst();
 
