@@ -54,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
             startActivity(new Intent(this, MainActivity.class));
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         db = new UserDataBaseHandler(this);
@@ -114,6 +115,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         finish();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 }catch(JSONException e){
                     e.printStackTrace();
