@@ -15,11 +15,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.pockettest.Activites.EditProfile;
 import com.example.pockettest.Activites.LoginActivity;
 import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
 import com.example.pockettest.Model.User;
 import com.example.pockettest.R;
+import com.example.pockettest.Util.Urls;
+import com.example.pockettest.Util.VolleySingleton;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AccountFragment extends Fragment implements View.OnClickListener{
 
@@ -55,7 +66,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         User user = db.getUser();
         email.setText(user.getEmail());
         name.setText(user.getName());
-        mobileNo.setText(user.getMobileNo());
+        mobileNo.setText("+91-"+user.getMobileNo());
 
         editProfile.setOnClickListener(this);
         starredQuizes.setOnClickListener(this);
@@ -68,7 +79,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         switch(v.getId()){
             case R.id.account_editProfile:
                 Log.d("pressed", "Button pressed");
-                //Set Edit view activity
+                startActivity(new Intent(getActivity(), EditProfile.class));
                 break;
             case R.id.account_starredQuiz:
                 //todo
@@ -84,7 +95,30 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
 
     public  void logout(){
         db.deleteUser();
-        SharedPrefManager.getInstance(getActivity()).deleteToken();
-        startActivity(new Intent(getContext(), LoginActivity.class));
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.BASE_URL + Urls.LOGOUT_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("status", "Successfull");
+                SharedPrefManager.getInstance(getActivity()).deleteToken();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("status", error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String , String>  headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", "Bearer " + SharedPrefManager.getInstance(getActivity()).getToken());
+                return headers;
+            }
+        };
+        Log.d("error", "Bearer " +SharedPrefManager.getInstance(getActivity()).getToken());
+        VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
+
     }
 }
