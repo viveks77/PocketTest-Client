@@ -78,6 +78,16 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public void updateUser(User user){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(Constants.NAME, user.getName());
+        values.put(Constants.MOBILE, user.getMobileNo());
+        values.put(Constants.LOC, user.getLocation());
+        db.update(Constants.TABLE_NAME, values, Constants.EMAIL + "=?", new String[]{user.getEmail()});
+    }
+
     public void deleteUser(){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(Constants.TABLE_NAME, null, null);

@@ -119,6 +119,5 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         };
         Log.d("error", "Bearer " +SharedPrefManager.getInstance(getActivity()).getToken());
         VolleySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
-
     }
 }

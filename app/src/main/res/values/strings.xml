@@ -6,4 +6,9 @@
     <string name="account_starred_quiz">Starred Quizes</string>
     <string name="account_quiz_taken">Given Quizes</string>
     <string name="account_logout">Logout</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile No</string>
+    <string name="loc">Location</string>
+    <string name="save">Save</string>
+    <string name="change_profile_picture">Change Profile Picture</string>
 </resources>
