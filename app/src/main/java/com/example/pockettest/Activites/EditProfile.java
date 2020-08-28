@@ -1,9 +1,11 @@
 package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
 import com.example.pockettest.Fragments.AccountFragment;
 import com.example.pockettest.Fragments.HomeFragment;
+import com.example.pockettest.Fragments.LecturesFragment;
 import com.example.pockettest.Model.User;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
@@ -42,6 +45,7 @@ public class EditProfile extends AppCompatActivity {
     private EditText name;
     private EditText mobile;
     private EditText loc;
+
     UserDataBaseHandler db;
 
     @Override
@@ -64,6 +68,12 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateUser();
+
+                FragmentManager FM= getSupportFragmentManager();
+                AccountFragment accountFragment=new AccountFragment();
+                FM.beginTransaction().replace(R.id.edit_profile_layout,accountFragment).commit();
+
+
             }
         });
     }

@@ -94,11 +94,11 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     }
 
     public  void logout(){
-        db.deleteUser();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.BASE_URL + Urls.LOGOUT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d("status", "Successfull");
+                db.deleteUser();
                 SharedPrefManager.getInstance(getActivity()).deleteToken();
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -106,7 +106,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("status", error.getMessage());
+//                Log.d("status", error.getMessage());
             }
         }) {
             @Override
