@@ -94,9 +94,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     }
 
     public  void logout(){
-<<<<<<< HEAD
-=======
->>>>>>> 939a85d3af5357184ffd81a178715a0b3116246d
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Urls.BASE_URL + Urls.LOGOUT_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -108,12 +105,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-<<<<<<< HEAD
-=======
                 Log.d("status", "error occured");
                 Toast.makeText(getContext(), "Oops! Something went wrong.", Toast.LENGTH_SHORT).show();
-
->>>>>>> 939a85d3af5357184ffd81a178715a0b3116246d
             }
         }) {
             @Override
