@@ -1,6 +1,7 @@
 package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
@@ -45,7 +46,7 @@ public class EditProfile extends AppCompatActivity {
     private EditText name;
     private EditText mobile;
     private EditText loc;
-
+    private Button cancel;
     UserDataBaseHandler db;
 
     @Override
@@ -53,6 +54,7 @@ public class EditProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        cancel = findViewById(R.id.edit_profile_cancel);
         save = findViewById(R.id.edit_profile_save);
         name = findViewById(R.id.edit_profile_changeName);
         mobile = findViewById(R.id.edit_profile_changeMobile);
@@ -64,16 +66,21 @@ public class EditProfile extends AppCompatActivity {
         mobile.setHint(user.getMobileNo());
         loc.setHint(user.getLocation());
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateUser();
-
-                FragmentManager FM= getSupportFragmentManager();
-                AccountFragment accountFragment=new AccountFragment();
-                FM.beginTransaction().replace(R.id.edit_profile_layout,accountFragment).commit();
-
-
+                if(name.getText().toString().length() == 0 && mobile.getText().toString().length() == 0 && loc.getText().toString().length() == 0){
+                    Toast.makeText(EditProfile.this, "Please edit a field", Toast.LENGTH_SHORT).show();
+                }else{
+                    updateUser();
+                }
             }
         });
     }
@@ -101,8 +108,11 @@ public class EditProfile extends AppCompatActivity {
                     user.setMobileNo(userObj.getString("mobile_no"));
                     user.setLocation(userObj.getString("location"));
                     db.updateUser(user);
+                    Intent intent = new Intent(EditProfile.this, MainActivity.class);
+                    intent.putExtra("OpenAccountF", true);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     finish();
-                    startActivity(new Intent(EditProfile.this, AccountFragment.class));
+                    startActivity(intent);
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
@@ -117,7 +127,6 @@ public class EditProfile extends AppCompatActivity {
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
                         JSONObject obj = new JSONObject(res);
-                        Log.d("error ye hai", obj.toString());
                         //JSONArray errorArray = obj.getJSONArray("mobile_no");
                         Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),"Oops! Something went wrong", Snackbar.LENGTH_SHORT).show();
 

@@ -3,9 +3,13 @@ package com.example.pockettest.Activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -14,6 +18,7 @@ import com.example.pockettest.Fragments.HomeFragment;
 import com.example.pockettest.Fragments.LecturesFragment;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
+import com.example.pockettest.Util.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,10 +65,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         lecturesFragment=new LecturesFragment();
         accountFragment=new AccountFragment();
         bottomNavigationView=findViewById(R.id.bottom_nav_bar);
+        boolean flag = false;
+        Bundle extras = getIntent().getExtras();
+        Log.d("test", "ye chal raha hai");
+        if(extras != null && extras.containsKey("OpenAccountF")){
+            Log.d("test", "ye nahi chal raha hai");
+            flag = extras.getBoolean("OpenAccountF");
+        }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        setFragment(homeFragment);
-
+        if(flag){
+            setFragment(accountFragment);
+        }else {
+            setFragment(homeFragment);
+        }
     }
 
 
@@ -92,6 +107,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         transaction.replace(main_frame.getId(), fragment);
 
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
+        int selectedItemId = bottomNavigationView.getSelectedItemId();
+        if(R.id.nav_home != selectedItemId){
+            setHomeItem(MainActivity.this);
+        }else{
+            Intent a = new Intent(Intent.ACTION_MAIN);
+            a.addCategory(Intent.CATEGORY_HOME);
+            a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(a);
+        }
+        }
+
+    public static void setHomeItem(Activity activity) {
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)
+                activity.findViewById(R.id.bottom_nav_bar);
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
     }
     }
 

@@ -11,5 +11,6 @@ public class Constants {
     public static final String MOBILE = "mobileNo";
     public static final String LOC = "location";
 
-
+    public static final String HOME_FRAGEMNT ="home";
+    public static final String FRAGMENT_OTHER = "other";
 }
