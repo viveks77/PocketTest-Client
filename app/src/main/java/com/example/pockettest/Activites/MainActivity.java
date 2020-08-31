@@ -67,9 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bottomNavigationView=findViewById(R.id.bottom_nav_bar);
         boolean flag = false;
         Bundle extras = getIntent().getExtras();
-        Log.d("test", "ye chal raha hai");
         if(extras != null && extras.containsKey("OpenAccountF")){
-            Log.d("test", "ye nahi chal raha hai");
             flag = extras.getBoolean("OpenAccountF");
         }
 
