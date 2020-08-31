@@ -45,6 +45,7 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
         values.put(Constants.MOBILE, user.getMobileNo());
         values.put(Constants.LOC, user.getLocation());
         db.insert(Constants.TABLE_NAME, null, values);
+        db.close();
 
     }
 
@@ -74,6 +75,7 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
             if(cursor != null) {
                 cursor.close();
             }
+            db.close();
         }
         return null;
     }
@@ -86,6 +88,7 @@ public class UserDataBaseHandler extends SQLiteOpenHelper {
         values.put(Constants.MOBILE, user.getMobileNo());
         values.put(Constants.LOC, user.getLocation());
         db.update(Constants.TABLE_NAME, values, Constants.EMAIL + "=?", new String[]{user.getEmail()});
+        db.close();
     }
 
     public void deleteUser(){
