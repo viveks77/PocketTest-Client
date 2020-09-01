@@ -11,6 +11,6 @@ public class Constants {
     public static final String MOBILE = "mobileNo";
     public static final String LOC = "location";
 
-    public static final String HOME_FRAGEMNT ="home";
-    public static final String FRAGMENT_OTHER = "other";
+    public static final String YOUTUBE_API_KEY = "AIzaSyCqP7Jb7_Ew9HCz7QbdO_mPkqxrPnddhs0";
+    public static final String YOUTUBE_API_URL = "https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCkKAj4hKg1qBp8w0prFqNNg&type=video&order=date&maxResults=10&key=";
 }
