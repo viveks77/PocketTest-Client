@@ -4,7 +4,9 @@ public class Quiz {
     private String title;
     private String description;
 
-    public Quiz() {
+    public Quiz(String title,String description) {
+        this.title=title;
+        this.description=description;
     }
 
     public String getTitle() {

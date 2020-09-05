@@ -45,21 +45,8 @@ public class UpcomingTFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        quizList = new ArrayList<>();
-        quizList = setCatInfo();
 
-        upListAdapter = new UpListAdapter(quizList);
-        recyclerView.setAdapter(upListAdapter);
     }
 
-    private List<Quiz> setCatInfo() {
-        quizList.clear();
-        for(int i = 1; i < 11; i++){
-            Quiz quiz = new Quiz();
-            quiz.setTitle("Quiz no :" + i);
-            quiz.setDescription("This is quiz Description");
-            quizList.add(quiz);
-        }
-        return quizList;
     }
-}
+

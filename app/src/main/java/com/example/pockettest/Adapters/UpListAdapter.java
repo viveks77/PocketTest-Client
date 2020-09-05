@@ -1,40 +1,53 @@
 package com.example.pockettest.Adapters;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pockettest.Model.Quiz;
+import com.example.pockettest.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHolder> {
-    private List<Quiz> quizList;
-    public UpListAdapter(List<Quiz> quizList) {
-        this.quizList=quizList;
+    private ArrayList<Quiz> upquizList;
+    public UpListAdapter(ArrayList<Quiz> upquizList)
+    {
+        this.upquizList=upquizList;
     }
 
     @NonNull
     @Override
     public UpListAdapter.UpViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.quiz_list, parent, false);
+        return new UpViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull UpListAdapter.UpViewHolder holder, int position) {
-
+     String upquiz_title=upquizList.get(position).getTitle();
+     holder.uptitle.setText(upquiz_title);
+     String upquiz_description=upquizList.get(position).getDescription();
+     holder.updescription.setText(upquiz_description);
     }
 
     @Override
-    public int getItemCount() {
-        return 0;
+    public int getItemCount()
+    {
+        return upquizList.size();
     }
     public class UpViewHolder extends RecyclerView.ViewHolder{
-
+        private TextView uptitle;
+        private TextView updescription;
         public UpViewHolder(@NonNull View itemView) {
             super(itemView);
+            uptitle=itemView.findViewById(R.id.quizTitle);
+            updescription=itemView.findViewById(R.id.quizDescription);
 
         }
     }

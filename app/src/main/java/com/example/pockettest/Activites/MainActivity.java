@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private HomeFragment homeFragment;
     private LecturesFragment lecturesFragment;
     private AccountFragment accountFragment;
-    private BottomNavigationView bottomNavigationView;private ArrayList<Quiz> catlist;
+    private BottomNavigationView bottomNavigationView;
+    private ArrayList<Quiz> catlist;
 
     private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override

@@ -1,5 +1,7 @@
 package com.example.pockettest.Fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+
+import com.example.pockettest.Adapters.OnListAdapter;
+import com.example.pockettest.Adapters.UpListAdapter;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 import com.example.pockettest.Adapters.QuizRecyclerViewAdapter;
@@ -19,10 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-    private List<Quiz> quizList;
-    private RecyclerView recyclerView;
+    private ArrayList<Quiz> upquizList;
+    private RecyclerView ongoing_rv;
+    private RecyclerView upcoming_rv;
     private QuizRecyclerViewAdapter quizRecyclerViewAdapter;
+    private ArrayList<Quiz> quiz_list;
 
+    Context thiscontext;  
+
+    LinearLayoutManager layoutManagerGroup;
     public HomeFragment() {
 
     }
@@ -30,31 +41,39 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home, container, false);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        thiscontext=view.getContext();
+        ongoing_rv=view.findViewById(R.id.ongoing_rv);
+        quiz_list=new ArrayList<>();
 
-        recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        quiz_list.add(new Quiz("Physics","Rutherford Model"));
+        OnListAdapter adapter=new OnListAdapter(quiz_list);
 
-        quizList = new ArrayList<>();
-        quizList = setCatInfo();
 
-        quizRecyclerViewAdapter = new QuizRecyclerViewAdapter(quizList);
-        recyclerView.setAdapter(quizRecyclerViewAdapter);
+        //Upcoming Tests
+        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getContext());
+        ongoing_rv.setLayoutManager(layoutManager);
+        ongoing_rv.setAdapter(adapter);
+
+        upquizList=new ArrayList<>();
+        upcoming_rv=view.findViewById(R.id.upcoming_rv);
+        upquizList.add(new Quiz("Maths","Integration"));
+        upquizList.add(new Quiz("Maths","Integration"));
+        upquizList.add(new Quiz("Maths","Integration"));
+        upquizList.add(new Quiz("Maths","Integration"));
+        UpListAdapter upListAdapter=new UpListAdapter(upquizList);
+        RecyclerView.LayoutManager uplayoutManager=new LinearLayoutManager(getContext());
+        upcoming_rv.setLayoutManager(uplayoutManager);
+        upcoming_rv.setAdapter(upListAdapter);
+
+
+
+
     }
 
-    private List<Quiz> setCatInfo() {
-        quizList.clear();
-        for(int i = 0; i < 10; i++){
-            Quiz quiz = new Quiz();
-            quiz.setTitle("Quiz no :" + i);
-            quiz.setDescription("This is quiz Description");
-            quizList.add(quiz);
-        }
-        return quizList;
-    }
 }
