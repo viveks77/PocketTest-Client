@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHolder> {
-    private ArrayList<Quiz> upquizList;
-    public UpListAdapter(ArrayList<Quiz> upquizList)
+    private List<Quiz> upquizList;
+    public UpListAdapter(List<Quiz> upquizList)
     {
         this.upquizList=upquizList;
     }
@@ -31,8 +31,8 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
     @Override
     public void onBindViewHolder(@NonNull UpListAdapter.UpViewHolder holder, int position) {
      String upquiz_title=upquizList.get(position).getTitle();
-     holder.uptitle.setText(upquiz_title);
      String upquiz_description=upquizList.get(position).getDescription();
+     holder.uptitle.setText(upquiz_title);
      holder.updescription.setText(upquiz_description);
     }
 
@@ -41,10 +41,13 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
     {
         return upquizList.size();
     }
+
     public class UpViewHolder extends RecyclerView.ViewHolder{
+
         private TextView uptitle;
         private TextView updescription;
-        public UpViewHolder(@NonNull View itemView) {
+
+        UpViewHolder(@NonNull View itemView) {
             super(itemView);
             uptitle=itemView.findViewById(R.id.quizTitle);
             updescription=itemView.findViewById(R.id.quizDescription);

@@ -1,12 +1,18 @@
 package com.example.pockettest.Model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+
 public class Quiz {
     private String title;
     private String description;
+    private String total_marks;
+    private String primary_key;
+    private LocalDateTime publish_date;
+    private LocalDateTime end_time;
 
-    public Quiz(String title,String description) {
-        this.title=title;
-        this.description=description;
+    public Quiz() {
     }
 
     public String getTitle() {
@@ -23,5 +29,37 @@ public class Quiz {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTotal_marks() {
+        return total_marks;
+    }
+
+    public void setTotal_marks(String total_marks) {
+        this.total_marks = total_marks;
+    }
+
+    public String getPrimary_key() {
+        return primary_key;
+    }
+
+    public void setPrimary_key(String primary_key) {
+        this.primary_key = primary_key;
+    }
+
+    public LocalDateTime getPublish_date() {
+        return publish_date;
+    }
+
+    public void setPublish_date(LocalDateTime publish_date) {
+        this.publish_date = publish_date;
+    }
+
+    public LocalDateTime getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(LocalDateTime end_time) {
+        this.end_time = end_time;
     }
 }

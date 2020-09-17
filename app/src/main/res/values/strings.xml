@@ -16,4 +16,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cancel">Cancel</string>
     <string name="lecutres">Lectures</string>
+    <string name="upcoming_tests">Upcoming Tests</string>
+    <string name="ongoing_tests">Ongoing Tests</string>
 </resources>
