@@ -26,6 +26,8 @@ import com.example.pockettest.Model.VideoDetails;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Constants;
 import com.example.pockettest.Util.VolleySingleton;
+import com.faltenreich.skeletonlayout.Skeleton;
+import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +40,7 @@ import java.util.List;
 public class LecturesFragment extends Fragment {
     private Context context;
     private Toolbar toolbar;
+    private Skeleton skeleton;
     private List<VideoDetails> videoList;
     private RecyclerView recyclerView;
     private LectureRecyclerViewAdapter lectureRecyclerViewAdapter;
@@ -56,20 +59,23 @@ public class LecturesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        skeleton = view.findViewById(R.id.lecture_skeletonLayout);
+
         recyclerView = view.findViewById(R.id.lectures_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
+        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.video_list, 3);
+        skeleton.showSkeleton();
+        skeleton.setShimmerDurationInMillis(1000);
         videoList = new ArrayList<>();
         fetchVideoList();
     }
 
     private void fetchVideoList(){
-        final ProgressDialog dialog = ProgressDialog.show(context, null, "Please Wait");
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.YOUTUBE_API_URL + Constants.YOUTUBE_API_KEY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                dialog.dismiss();
+                skeleton.showOriginal();
                 try{
                     JSONObject obj = new JSONObject(response);
                     JSONArray items = obj.getJSONArray("items");

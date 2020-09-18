@@ -22,9 +22,14 @@
             />
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lectures_recyclerView"
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/lecture_skeletonLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lectures_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
 </LinearLayout>
