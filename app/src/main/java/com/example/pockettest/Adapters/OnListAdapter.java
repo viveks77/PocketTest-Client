@@ -60,5 +60,4 @@ public class OnListAdapter extends RecyclerView.Adapter<OnListAdapter.OnViewHold
         }
     }
 
-
 }

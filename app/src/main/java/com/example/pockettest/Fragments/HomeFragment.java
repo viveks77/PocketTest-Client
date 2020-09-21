@@ -134,7 +134,7 @@ public class HomeFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error response", error.getMessage());
+               // Log.d("error response", error.getMessage());
             }
         }) {
             @Override

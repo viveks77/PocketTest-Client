@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activites.YoutubeVideoPlayer"
-            android:screenOrientation="sensorLandscape"
-            android:configChanges="orientation|keyboardHidden" />
+        <activity android:name=".Activites.TestActivity"></activity>
+        <activity android:name=".Activites.StartTest" />
+        <activity
+            android:name=".Activites.YoutubeVideoPlayer"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="sensorLandscape" />
         <activity android:name=".Activites.EditProfile" />
         <activity android:name=".Activites.MainActivity" />
         <activity android:name=".Activites.LoginActivity" />
