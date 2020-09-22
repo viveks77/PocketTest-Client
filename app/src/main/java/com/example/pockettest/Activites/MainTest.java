@@ -104,10 +104,10 @@ public class MainTest extends AppCompatActivity {
                             answer.setQuestion_id(answerObj.getString("question"));
                             answersList.add(answer);
                         }
-                        question.setAnswer_1(answersList.get(1));
-                        question.setAnswer_2(answersList.get(2));
-                        question.setAnswer_3(answersList.get(3));
-                        question.setAnswer_4(answersList.get(4));
+                        question.setAnswer_1(answersList.get(0));
+                        question.setAnswer_2(answersList.get(1));
+                        question.setAnswer_3(answersList.get(2));
+                        question.setAnswer_4(answersList.get(3));
 
                         questions_list.add(question);
                     }
