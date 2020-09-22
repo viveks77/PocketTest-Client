@@ -114,7 +114,7 @@ public class HomeFragment extends Fragment {
                     Log.d("error", e.getMessage());
                 }
                 if(upComingQuizList.size() > 0){
-                    upListAdapter = new UpListAdapter(upComingQuizList);
+                    upListAdapter = new UpListAdapter(upComingQuizList, context);
                     upcoming_rv.setAdapter(upListAdapter);
                     upListAdapter.notifyDataSetChanged();
                 }else{
@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 if(onGoingQuizList.size() > 0){
-                    onListAdapter = new OnListAdapter(onGoingQuizList);
+                    onListAdapter = new OnListAdapter(onGoingQuizList,context);
                     ongoing_rv.setAdapter(onListAdapter);
                     onListAdapter.notifyDataSetChanged();
                 }else{

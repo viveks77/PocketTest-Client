@@ -1,10 +1,11 @@
 package com.example.pockettest.Model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
-public class Quiz {
+public class Quiz implements Serializable {
     private String title;
     private String description;
     private String total_marks;
@@ -36,7 +37,7 @@ public class Quiz {
     }
 
     public void setTotal_marks(String total_marks) {
-        this.total_marks = total_marks;
+        this.total_marks = "Marks :  " + total_marks;
     }
 
     public String getPrimary_key() {

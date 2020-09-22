@@ -24,7 +24,7 @@ public class StartTest extends AppCompatActivity {
         });
     }
     private void starttest(){
-        Intent intent=new Intent(StartTest.this,TestActivity.class);
+        Intent intent=new Intent(StartTest.this,MainActivity.class);
         startActivity(intent);
     }
 
