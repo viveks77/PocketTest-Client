@@ -1,12 +1,12 @@
 package com.example.pockettest.Activites;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pockettest.Adapters.TestAdapter;
 import com.example.pockettest.DataBase.SharedPrefManager;
@@ -18,11 +18,9 @@ import com.example.pockettest.Util.VolleySingleton;
 import com.faltenreich.skeletonlayout.Skeleton;
 import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +28,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pockettest.R;
 
@@ -39,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +52,7 @@ public class MainTest extends AppCompatActivity {
     private Quiz quiz;
     private List<Questions> questions_list;
     private TestAdapter testAdapter;
+    private Map<String, String> userAnswers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainTest extends AppCompatActivity {
         toolbar.setTitle(quiz.getTitle());
         questions_list = new ArrayList<>();
 
+        submitButton = findViewById(R.id.main_test_submit);
         marks = findViewById(R.id.main_test_marks);
         marks.setText(quiz.getTotal_marks());
 
@@ -72,10 +74,18 @@ public class MainTest extends AppCompatActivity {
         skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.activity_test, 3);
         skeleton.showSkeleton();
         skeleton.setShimmerDurationInMillis(1000);
-        getQuestions();
+        questions_list = getQuestions();
+        testAdapter = new TestAdapter(questions_list);
+        userAnswers = testAdapter.getAnswers();
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                submitAnswers();
+            }
+        });
     }
 
-    private void getQuestions(){
+    private List<Questions> getQuestions(){
         questions_list.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + Urls.GET_QUIZ_DETAILS + quiz.getPrimary_key() + "/", new Response.Listener<String>() {
             @Override
@@ -90,6 +100,7 @@ public class MainTest extends AppCompatActivity {
                         Questions question = new Questions();
                         String title = (i + 1) + ". " + questionObj.getString("content");
                         question.setTitle(title);
+                        question.setQuestion_id(questionObj.getString("id"));
                         question.setMarks(questionObj.getString("marks"));
                         question.setQuiz_id(questionObj.getString("quiz"));
                         JSONArray answerArrayObj = questionObj.getJSONArray("answers");
@@ -108,10 +119,8 @@ public class MainTest extends AppCompatActivity {
                         question.setAnswer_2(answersList.get(1));
                         question.setAnswer_3(answersList.get(2));
                         question.setAnswer_4(answersList.get(3));
-
                         questions_list.add(question);
                     }
-                    testAdapter = new TestAdapter(questions_list);
                     recyclerView.setAdapter(testAdapter);
                     testAdapter.notifyDataSetChanged();
                 }catch (JSONException e){
@@ -132,6 +141,53 @@ public class MainTest extends AppCompatActivity {
             }
         };
         VolleySingleton.getInstance(MainTest.this).addToRequestQueue(stringRequest);
+        return questions_list;
+    }
+
+    private void submitAnswers(){
+        StringRequest submitRequest = new StringRequest(Request.Method.PATCH, Urls.BASE_URL + Urls.QUIZ + quiz.getPrimary_key() + Urls.SUBMIT_QUIZ, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(MainTest.this, "it worked", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String message = obj.getString("message");
+                    Log.d("response",message);
+                }catch (JSONException e){
+                    Log.d("Error response", "error ahe ithe ");
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                List<Map> obj = new ArrayList<>();
+                Iterator iterator = userAnswers.entrySet().iterator();
+                while(iterator.hasNext()){
+                    Map.Entry pair = (Map.Entry) iterator.next();
+                    Map<String, String> answers = new HashMap<>();
+                    answers.put("question", pair.getKey().toString());
+                    answers.put("answer", pair.getValue().toString());
+                    obj.add(answers);
+                }
+                params.put("answers", obj.toString());
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String , String>  headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + SharedPrefManager.getInstance(MainTest.this).getToken());
+                return headers;
+            }
+        };
+
+        VolleySingleton.getInstance(MainTest.this).addToRequestQueue(submitRequest);
     }
 
 }
