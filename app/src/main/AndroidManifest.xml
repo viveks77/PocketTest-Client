@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activites.AllTestsActivity"></activity>
+        <activity android:name=".Activites.ResultsActivity" />
         <activity
             android:name=".Activites.MainTest"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activites.StartTest" />
         <activity
             android:name=".Activites.YoutubeVideoPlayer"

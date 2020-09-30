@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.pockettest.Activites.AllTestsActivity;
 import com.example.pockettest.Activites.EditProfile;
 import com.example.pockettest.Activites.LoginActivity;
 import com.example.pockettest.DataBase.SharedPrefManager;
@@ -37,6 +38,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     private Button editProfile;
     private Button starredQuizes;
     private Button givenQuizes;
+    private Button allquizes;
     private Button logOut;
     private TextView name;
     private TextView email;
@@ -61,6 +63,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         editProfile = view.findViewById(R.id.account_editProfile);
         starredQuizes = view.findViewById(R.id.account_starredQuiz);
         givenQuizes = view.findViewById(R.id.account_quiz_taken);
+        allquizes=view.findViewById(R.id.account_quiz_history);
         logOut = view.findViewById(R.id.account_logout);
         db = new UserDataBaseHandler(getActivity());
         User user = db.getUser();
@@ -87,6 +90,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
             case R.id.account_quiz_taken:
                 //todo
                 break;
+            case R.id.account_quiz_history:
+                startActivity(new Intent(getActivity(), AllTestsActivity.class));
+                break;
+
             case R.id.account_logout:
                 logout();
                 break;

@@ -53,7 +53,6 @@ public class EditProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
         cancel = findViewById(R.id.edit_profile_cancel);
         save = findViewById(R.id.edit_profile_save);
         name = findViewById(R.id.edit_profile_changeName);
@@ -103,6 +102,7 @@ public class EditProfile extends AppCompatActivity {
                 try{
                     JSONObject obj = new JSONObject(response);
                     JSONObject userObj = obj.getJSONObject("user");
+
 
                     user.setName(userObj.getString("name"));
                     user.setMobileNo(userObj.getString("mobile_no"));

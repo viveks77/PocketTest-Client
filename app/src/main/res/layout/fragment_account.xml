@@ -107,32 +107,54 @@
             android:paddingEnd="15dp"
             android:text="@string/account_starred_quiz"
             android:background="#007ACBF3" />
+
         <Button
             android:id="@+id/account_quiz_taken"
-            android:layout_below="@+id/account_starredQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
+            android:layout_below="@+id/account_starredQuiz"
+            android:layout_marginTop="2dp"
 
-            android:paddingStart="25dp"
-            android:gravity="center|left"
-            android:textSize="20sp"
+            android:background="#007ACBF3"
             android:drawableEnd="@drawable/arrow"
+            android:gravity="center|left"
+            android:paddingStart="25dp"
             android:paddingEnd="15dp"
             android:text="@string/account_quiz_taken"
-            android:background="#007ACBF3" />
+            android:textAllCaps="false"
+            android:textSize="20sp" />
+
         <Button
-            android:id="@+id/account_logout"
-            android:layout_below="@+id/account_quiz_taken"
+            android:id="@+id/account_quiz_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="false"
+            android:layout_below="@id/account_quiz_taken"
+            android:layout_marginTop="-1dp"
 
+            android:background="#007ACBF3"
+            android:drawableEnd="@drawable/arrow"
+            android:gravity="center|left"
             android:paddingStart="25dp"
+            android:paddingEnd="15dp"
+            android:text="@string/account_quiz_history"
+            android:textAllCaps="false"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/account_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/account_quiz_history"
+            android:layout_marginTop="-1dp"
+
+            android:background="#007ACBF3"
             android:gravity="center|start"
+            android:paddingStart="25dp"
             android:text="@string/account_logout"
-            android:textSize="20sp"
-            android:background="#007ACBF3" />
+            android:textAllCaps="false"
+            android:textSize="20sp" />
     </RelativeLayout>
+
+
 
 </RelativeLayout>

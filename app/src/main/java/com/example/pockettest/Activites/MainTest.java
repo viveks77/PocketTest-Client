@@ -86,7 +86,7 @@ public class MainTest extends AppCompatActivity {
                     JSONObject quiz = parentObj.getJSONObject("quiz");
                     JSONArray questions = quiz.getJSONArray("questions");
                     for(int i = 0;  i < questions.length();  i++){
-                        JSONObject questionObj = questions.getJSONObject(i);
+                        JSONObject questionObj = questions. getJSONObject(i);
                         Questions question = new Questions();
                         String title = (i + 1) + ". " + questionObj.getString("content");
                         question.setTitle(title);

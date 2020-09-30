@@ -5,6 +5,7 @@
     <string name="account_edit_profile">Edit Profile</string>
     <string name="account_starred_quiz">Starred Quizes</string>
     <string name="account_quiz_taken">Given Quizes</string>
+    <string name="account_quiz_history">All Quizes</string>
     <string name="account_logout">Logout</string>
     <string name="name">Name</string>
     <string name="mobile">Mobile No</string>

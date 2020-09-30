@@ -5,22 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activites.StartTest">
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/tbstarttest"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    >
+
+</androidx.appcompat.widget.Toolbar>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvstarttest"
+        android:layout_below="@+id/tbstarttest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            >
+
+            <TextView
+                android:id="@+id/test_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="150dp"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="152dp"
+                android:padding="10dp"
+                android:text="TEST NAME"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/test_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/test_name"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="95dp"
+                android:padding="10dp"
+                android:text="TEST DESCRIPTION"
+                android:textSize="20dp" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/total_marksst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button_starttest"
+        android:layout_below="@+id/cvstarttest"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="158dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="109dp"
+        android:layout_marginEnd="276dp"
         android:text="Total Marks:20" />
 
     <Button
         android:id="@+id/button_starttest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/cvstarttest"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginBottom="240dp"
         android:text="Confirm"></Button>
+
+    <TextView
+        android:id="@+id/total_timest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cvstarttest"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="255dp"
+        android:layout_marginTop="106dp"
+        android:layout_marginEnd="62dp"
+        android:text="" />
+
+
 </RelativeLayout>
