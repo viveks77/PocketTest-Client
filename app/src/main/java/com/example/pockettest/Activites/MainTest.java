@@ -1,5 +1,6 @@
 package com.example.pockettest.Activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.AuthFailureError;
@@ -13,6 +14,7 @@ import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.Model.Answer;
 import com.example.pockettest.Model.Questions;
 import com.example.pockettest.Model.Quiz;
+import com.example.pockettest.Model.UserQuiz;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.faltenreich.skeletonlayout.Skeleton;
@@ -36,6 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -60,7 +63,7 @@ public class MainTest extends AppCompatActivity {
         setContentView(R.layout.activity_main_test);
         CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         bundle = getIntent().getExtras();
-        quiz = (Quiz) bundle.getSerializable("Quiz");
+        quiz = (Quiz) bundle.getSerializable("quiz");
         toolbar.setTitle(quiz.getTitle());
         questions_list = new ArrayList<>();
 
@@ -145,49 +148,68 @@ public class MainTest extends AppCompatActivity {
     }
 
     private void submitAnswers(){
-        StringRequest submitRequest = new StringRequest(Request.Method.PATCH, Urls.BASE_URL + Urls.QUIZ + quiz.getPrimary_key() + Urls.SUBMIT_QUIZ, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(MainTest.this, "it worked", Toast.LENGTH_SHORT).show();
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    String message = obj.getString("message");
-                    Log.d("response",message);
+
+        final JSONObject jsonObject = new JSONObject();
+        try{
+            JSONArray obj = new JSONArray();
+            Iterator iterator = userAnswers.entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry pair = (Map.Entry) iterator.next();
+                JSONObject answers = new JSONObject();
+                try{
+                    answers.put("question", pair.getKey().toString());
+                    answers.put("answer", pair.getValue().toString());
+                    obj.put(answers);
                 }catch (JSONException e){
-                    Log.d("Error response", "error ahe ithe ");
+                    Log.d("jsonException", e.toString());
+                }
+            }
+            Log.d("answers", obj.toString());
+            jsonObject.put("answers", obj);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, Urls.BASE_URL + Urls.QUIZ + quiz.getPrimary_key() + Urls.SUBMIT_QUIZ, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject obj) {
+                try {
+                    Quiz quiz = new Quiz();
+                    quiz.setTitle(obj.getString("title"));
+                    quiz.setDescription(obj.getString("description"));
+                    quiz.setTotal_marks(obj.getString("total_marks"));
+                    JSONObject userquiz =  obj.getJSONObject("userquiz_set");
+                    UserQuiz userQuiz = new UserQuiz();
+                    userQuiz.setUserquiz_id(userquiz.getString("id"));
+                    userQuiz.setUser_score(userquiz.getString("score"));
+                    userQuiz.setDate_attempted(LocalDateTime.parse((userquiz.getString("given_date"))));
+
+                    Intent intent = new Intent(MainTest.this, ResultsActivity.class);
+                    intent.putExtra("quiz", quiz);
+                    intent.putExtra("userquiz", userQuiz);
+                    startActivity(intent);
+                    finish();
+                }catch (JSONException e){
+                    Log.d("Error response", e.toString());
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("error", error.toString());
             }
         }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                List<Map> obj = new ArrayList<>();
-                Iterator iterator = userAnswers.entrySet().iterator();
-                while(iterator.hasNext()){
-                    Map.Entry pair = (Map.Entry) iterator.next();
-                    Map<String, String> answers = new HashMap<>();
-                    answers.put("question", pair.getKey().toString());
-                    answers.put("answer", pair.getValue().toString());
-                    obj.add(answers);
-                }
-                params.put("answers", obj.toString());
-                return params;
-            }
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String , String>  headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + SharedPrefManager.getInstance(MainTest.this).getToken());
+                headers.put("Content-Type", "application/json");
                 return headers;
             }
         };
 
-        VolleySingleton.getInstance(MainTest.this).addToRequestQueue(submitRequest);
+        VolleySingleton.getInstance(MainTest.this).addToRequestQueue(jsonObjectRequest);
     }
 
 }
