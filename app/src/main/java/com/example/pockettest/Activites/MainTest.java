@@ -1,5 +1,6 @@
 package com.example.pockettest.Activites;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +35,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pockettest.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,7 +72,7 @@ public class MainTest extends AppCompatActivity {
 
         submitButton = findViewById(R.id.main_test_submit);
         marks = findViewById(R.id.main_test_marks);
-        marks.setText(quiz.getTotal_marks());
+        marks.setText("Marks: "+ quiz.getTotal_marks());
 
         recyclerView = findViewById(R.id.main_test_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -97,6 +100,20 @@ public class MainTest extends AppCompatActivity {
                 try{
                     JSONObject parentObj = new JSONObject(response);
                     JSONObject quiz = parentObj.getJSONObject("quiz");
+                    Object userquiz = quiz.get("userquiz_set");
+                    if(userquiz.toString() != "false"){
+                        AlertDialog alertDialog = new AlertDialog.Builder(MainTest.this).create();
+                        alertDialog.setTitle("Oops!");
+                        alertDialog.setMessage("You already gave this Quiz!");
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(MainTest.this, MainActivity.class));
+                                finish();
+                            }
+                        });
+                        alertDialog.show();
+                    }
                     JSONArray questions = quiz.getJSONArray("questions");
                     for(int i = 0;  i < questions.length();  i++){
                         JSONObject questionObj = questions. getJSONObject(i);

@@ -2,134 +2,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <androidx.cardview.widget.CardView
+    <Toolbar
+        android:id="@+id/result_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:padding="16dp"
+        android:background="@color/colorPrimary">
+
+    </Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="15dp"
         >
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
             <TextView
-                android:id="@+id/test_name"
+                android:id="@+id/result_quiz_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="11dp"
+                android:text="Quiz name"
+                android:layout_marginTop="25dp"
+                android:textSize="30sp"
+                />
+            <TextView
+                android:id="@+id/result_quiz_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result_quiz_name"
+                android:textSize="18sp"
+                android:text="this is the quiz descitption "
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/result_user_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result_quiz_desc"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="165dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:text="Test Name WIll come here"
-                android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="40sp"
+                android:text="25"/>
 
             <TextView
-                android:id="@+id/date_score"
+                android:id="@+id/result_placeholder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/test_name"
-                android:layout_marginEnd="-98dp"
+                android:layout_toEndOf="@+id/result_user_score"
+                android:layout_below="@+id/result_quiz_desc"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="10dp"
+                android:text="outof" />
+
+            <TextView
+                android:id="@+id/result_quiz_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/result_placeholder"
+                android:layout_below="@+id/result_quiz_desc"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:text="25"
+                android:textSize="40sp"/>
+            <TextView
+                android:id="@+id/result_given_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/result_user_score"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
                 android:text="date" />
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/testdesc_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/test_name"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="53dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="258dp"
-                android:layout_marginBottom="10dp"
-                android:text="description"
-                android:textSize="20dp" />
-
-
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/scr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Score:"></TextView>
-
-            <TextView
-                android:id="@+id/score"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/scr"></TextView>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/use"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Name:"></TextView>
-
-            <TextView
-                android:id="@+id/atendee"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/use"></TextView>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/useemail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:text="Email:"></TextView>
-
-            <TextView
-                android:id="@+id/score_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/useemail"></TextView>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+        android:layout_gravity="bottom"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button_shape"
+        android:text="GO TO HOME"
+        />
 
 </LinearLayout>

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pockettest.Activites.MainActivity;
+import com.example.pockettest.Activites.StartTest;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 
@@ -63,8 +64,8 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
         @Override
         public void onClick(View v) {
             Quiz quiz = quiz_list.get(getAdapterPosition());
-            Intent intent = new Intent(context, MainActivity.class);
-            intent.putExtra("pk", quiz.getPrimary_key());
+            Intent intent = new Intent(context, StartTest.class);
+            intent.putExtra("quiz", quiz);
             context.startActivity(intent);
         }
     }

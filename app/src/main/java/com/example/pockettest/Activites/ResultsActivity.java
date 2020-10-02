@@ -7,29 +7,46 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+import com.example.pockettest.Model.Quiz;
+import com.example.pockettest.Model.UserQuiz;
 import com.example.pockettest.R;
 
 public class ResultsActivity extends AppCompatActivity {
+
+    private Toolbar toolbar;
+    private TextView quiz_name;
+    private TextView quiz_desc;
+    private TextView user_score;
+    private TextView quiz_marks;
+    private TextView given_date;
+    private Button go_to;
+    private Bundle bundle;
+    private Quiz quiz;
+    private UserQuiz userQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        TextView tv;
-        Button btnNext;
-        RadioGroup rg;
-        RadioButton rb1, rb2, rb3,rb4;
 
+        toolbar = findViewById(R.id.result_toolbar);
+        toolbar.setTitle("RESULT");
+        setActionBar(toolbar);
+        quiz_name = findViewById(R.id.result_quiz_name);
+        quiz_desc = findViewById(R.id.result_quiz_desc);
+        quiz_marks = findViewById(R.id.result_quiz_score);
+        user_score = findViewById(R.id.result_user_score);
+        given_date = findViewById(R.id.result_given_date);
 
+        bundle = getIntent().getExtras();
+        quiz = (Quiz) bundle.getSerializable("quiz");
+        userQuiz =  (UserQuiz) bundle.getSerializable("userquiz");
 
-            tv = (TextView) findViewById(R.id.test_question);
-            rb1 = (RadioButton) findViewById(R.id.test_answer_1);
-            rb2 = (RadioButton) findViewById(R.id.test_answer_2);
-            rb3 = (RadioButton) findViewById(R.id.test_answer_3);
-            rb4 =(RadioButton)findViewById(R.id.test_answer_4);
-
-
-
+        quiz_name.setText(quiz.getTitle());
+        quiz_desc.setText(quiz.getDescription());
+        quiz_marks.setText(quiz.getTotal_marks());
+        user_score.setText(userQuiz.getUser_score());
     }
 }

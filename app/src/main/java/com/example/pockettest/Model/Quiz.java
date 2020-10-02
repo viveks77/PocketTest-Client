@@ -37,7 +37,7 @@ public class Quiz implements Serializable {
     }
 
     public void setTotal_marks(String total_marks) {
-        this.total_marks = "Marks :  " + total_marks;
+        this.total_marks = total_marks;
     }
 
     public String getPrimary_key() {

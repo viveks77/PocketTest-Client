@@ -26,13 +26,12 @@
             >
 
             <TextView
-                android:id="@+id/test_name"
+                android:id="@+id/start_test_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="150dp"
-
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="152dp"
                 android:padding="10dp"
@@ -40,7 +39,7 @@
                 android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/test_description"
+                android:id="@+id/start_test_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/test_name"
@@ -56,7 +55,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/total_marksst"
+        android:id="@+id/start_total_marks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cvstarttest"
@@ -68,7 +67,7 @@
         android:text="Total Marks:20" />
 
     <Button
-        android:id="@+id/button_starttest"
+        android:id="@+id/start_test_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cvstarttest"
@@ -82,7 +81,7 @@
         android:text="Confirm"></Button>
 
     <TextView
-        android:id="@+id/total_timest"
+        android:id="@+id/start_test_total_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/cvstarttest"
