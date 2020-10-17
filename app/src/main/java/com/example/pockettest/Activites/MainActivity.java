@@ -3,22 +3,20 @@ package com.example.pockettest.Activites;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.pockettest.Fragments.AccountFragment;
 import com.example.pockettest.Fragments.HomeFragment;
 import com.example.pockettest.Fragments.LecturesFragment;
+import com.example.pockettest.Fragments.MainFragment;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
-import com.example.pockettest.Util.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -27,18 +25,19 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout main_frame;
     private HomeFragment homeFragment;
+    private MainFragment mainFragment;
     private LecturesFragment lecturesFragment;
     private AccountFragment accountFragment;
     private BottomNavigationView bottomNavigationView;
     private ArrayList<Quiz> catlist;
 
-    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
                 case R.id.nav_home:
-                    setFragment(new HomeFragment());
+                    setFragment(new MainFragment());
                     return true;
 
                 case R.id.nav_lecture:
@@ -55,42 +54,71 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     };
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         main_frame = findViewById(R.id.main_frame);
-        homeFragment=new HomeFragment();
-        lecturesFragment=new LecturesFragment();
-        accountFragment=new AccountFragment();
-        bottomNavigationView=findViewById(R.id.bottom_nav_bar);
+        homeFragment = new HomeFragment();
+        lecturesFragment = new LecturesFragment();
+        accountFragment = new AccountFragment();
+        mainFragment=new MainFragment();
+        bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         boolean flag = false;
         Bundle extras = getIntent().getExtras();
-        if(extras != null && extras.containsKey("OpenAccountF")){
-            flag = extras.getBoolean("OpenAccountF");
+        if (extras != null && extras.containsKey("Edit_AccountF")) {
+            flag = extras.getBoolean("Edit_AccountF");
+
+
         }
 
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
-        if(flag){
+        if (flag) {
             setFragment(accountFragment);
-        }else {
-            setFragment(homeFragment);
+        } else {
+            setFragment(mainFragment);
+        }
+
+
+        boolean start_test_flag = false;
+        Bundle start_test_extras = getIntent().getExtras();
+        if (extras != null && start_test_extras.containsKey("StartTest_HomeF")) {
+            start_test_flag = extras.getBoolean("StartTest_HomeF");
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        if (start_test_flag) {
+            setFragment(mainFragment);
+        } else {
+            setFragment(mainFragment);
+        }
+
+
+        boolean result_home_flag = false;
+        Bundle result_home_extras = getIntent().getExtras();
+        if (extras != null && result_home_extras.containsKey("Result_HomeF")) {
+            result_home_flag = result_home_extras.getBoolean("Result_HomeF");
+        }
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        if (result_home_flag) {
+            setFragment(mainFragment);
+        } else {
+            setFragment(mainFragment);
         }
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.nav_home:
-                setFragment(new HomeFragment());
+                setFragment(new MainFragment());
                 return true;
 
             case R.id.nav_lecture:
-                 setFragment(lecturesFragment);
+                setFragment(lecturesFragment);
                 return true;
 
             case R.id.nav_account:
@@ -112,20 +140,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_bar);
         int selectedItemId = bottomNavigationView.getSelectedItemId();
-        if(R.id.nav_home != selectedItemId){
+        if (R.id.nav_home != selectedItemId) {
             setHomeItem(MainActivity.this);
-        }else{
+        } else {
             Intent a = new Intent(Intent.ACTION_MAIN);
             a.addCategory(Intent.CATEGORY_HOME);
             a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(a);
         }
-        }
+    }
 
     public static void setHomeItem(Activity activity) {
         BottomNavigationView bottomNavigationView = (BottomNavigationView)
                 activity.findViewById(R.id.bottom_nav_bar);
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
     }
-    }
+}
 

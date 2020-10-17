@@ -50,20 +50,23 @@ import java.util.Map;
 
 public class MainTest extends AppCompatActivity {
 
+    private Long backPressedTime;
     private Skeleton skeleton;
     private Bundle bundle;
     private TextView marks;
-    private  RecyclerView recyclerView;
-    private  Button submitButton;
+    private RecyclerView recyclerView;
+    private Button submitButton;
     private Quiz quiz;
     private List<Questions> questions_list;
     private TestAdapter testAdapter;
     private Map<String, String> userAnswers;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_test);
+        submitButton = findViewById(R.id.main_test_submit);
         CollapsingToolbarLayout toolbar = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         bundle = getIntent().getExtras();
         quiz = (Quiz) bundle.getSerializable("quiz");
@@ -91,13 +94,40 @@ public class MainTest extends AppCompatActivity {
         });
     }
 
-    private List<Questions> getQuestions(){
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setMessage("Are you sure you want to Submit and Exit ?").
+        setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainTest.this, ResultsActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            }
+        }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog = alert.create();
+        alertDialog.show();
+
+
+    }
+
+    private List<Questions> getQuestions() {
         questions_list.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + Urls.GET_QUIZ_DETAILS + quiz.getPrimary_key() + "/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 skeleton.showOriginal();
-                try{
+                try {
                     JSONObject parentObj = new JSONObject(response);
                     JSONObject quiz = parentObj.getJSONObject("quiz");
                     Object userquiz = quiz.get("userquiz_set");
@@ -115,8 +145,8 @@ public class MainTest extends AppCompatActivity {
                         alertDialog.show();
                     }
                     JSONArray questions = quiz.getJSONArray("questions");
-                    for(int i = 0;  i < questions.length();  i++){
-                        JSONObject questionObj = questions. getJSONObject(i);
+                    for (int i = 0; i < questions.length(); i++) {
+                        JSONObject questionObj = questions.getJSONObject(i);
                         Questions question = new Questions();
                         String title = (i + 1) + ". " + questionObj.getString("content");
                         question.setTitle(title);
@@ -126,7 +156,7 @@ public class MainTest extends AppCompatActivity {
                         JSONArray answerArrayObj = questionObj.getJSONArray("answers");
 
                         List<Answer> answersList = new ArrayList<>();
-                        for(int j =0; j < answerArrayObj.length(); j++){
+                        for (int j = 0; j < answerArrayObj.length(); j++) {
                             JSONObject answerObj = answerArrayObj.getJSONObject(j);
                             Answer answer = new Answer();
                             answer.setAnswer_id(answerObj.getString("id"));
@@ -143,8 +173,8 @@ public class MainTest extends AppCompatActivity {
                     }
                     recyclerView.setAdapter(testAdapter);
                     testAdapter.notifyDataSetChanged();
-                }catch (JSONException e){
-                    Log.d("error :  ",  e.getMessage());
+                } catch (JSONException e) {
+                    Log.d("error :  ", e.getMessage());
                 }
             }
         }, new Response.ErrorListener() {
@@ -155,7 +185,7 @@ public class MainTest extends AppCompatActivity {
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String , String>  headers = new HashMap<>();
+                Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + SharedPrefManager.getInstance(MainTest.this).getToken());
                 return headers;
             }

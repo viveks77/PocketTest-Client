@@ -3,7 +3,6 @@ package com.example.pockettest.Activites;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -19,9 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
@@ -30,8 +26,6 @@ import com.example.pockettest.Fragments.SignupFragment;
 import com.example.pockettest.Model.Standard;
 import com.example.pockettest.Model.User;
 import com.example.pockettest.R;
-import com.example.pockettest.Util.Constants;
-import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -45,7 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoginActivity extends AppCompatActivity {
+public class  LoginActivity extends AppCompatActivity {
 
     private Button loginB;
     private Button signupButton;

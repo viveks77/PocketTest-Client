@@ -1,12 +1,9 @@
 package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,16 +20,12 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
-import com.example.pockettest.Fragments.AccountFragment;
-import com.example.pockettest.Fragments.HomeFragment;
-import com.example.pockettest.Fragments.LecturesFragment;
 import com.example.pockettest.Model.User;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -109,7 +102,7 @@ public class EditProfile extends AppCompatActivity {
                     user.setLocation(userObj.getString("location"));
                     db.updateUser(user);
                     Intent intent = new Intent(EditProfile.this, MainActivity.class);
-                    intent.putExtra("OpenAccountF", true);
+                    intent.putExtra("Edit_AccountF", true);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     finish();
                     startActivity(intent);

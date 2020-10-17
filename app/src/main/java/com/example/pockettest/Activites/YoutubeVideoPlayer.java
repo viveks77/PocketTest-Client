@@ -2,6 +2,7 @@ package com.example.pockettest.Activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 
 public class YoutubeVideoPlayer extends AppCompatActivity {
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     private YouTubePlayerView youTubePlayerView;
     private Bundle extras;
     @Override
@@ -25,14 +26,27 @@ public class YoutubeVideoPlayer extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         youTubePlayerView = findViewById(R.id.youtubeVideoPlayerId);
         getLifecycle().addObserver(youTubePlayerView);
+        swipeRefreshLayout=findViewById(R.id.youtube_swipe_refresh);
         extras = getIntent().getExtras();
         final String videoId = extras.getString("videoId");
 
-        youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                youTubePlayer.loadVideo(videoId, 0);
+            public void onRefresh() {
+
+
+                youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        youTubePlayer.loadVideo(videoId, 0);
+                    swipeRefreshLayout.setRefreshing(false);
+                    }
+
+                });
             }
         });
+
+
     }
 }
