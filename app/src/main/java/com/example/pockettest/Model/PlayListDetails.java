@@ -1,24 +1,20 @@
 package com.example.pockettest.Model;
 
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-
-public class VideoDetails {
-    private String videoId;
+public class PlayListDetails {
+    private String playListId;
     private String title;
     private String desc;
     private String thumbnailURL;
-    private LocalDateTime publishedDate;
 
-    public VideoDetails() {
+    public PlayListDetails() {
     }
 
-    public String getVideoId() {
-        return videoId;
+    public String getPlayListId() {
+        return playListId;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
+    public void setPlayListId(String playListId) {
+        this.playListId = playListId;
     }
 
     public String getTitle() {
@@ -43,13 +39,5 @@ public class VideoDetails {
 
     public void setThumbnailURL(String thumbnailURL) {
         this.thumbnailURL = thumbnailURL;
-    }
-
-    public LocalDateTime getPublishedDate() {
-        return publishedDate;
-    }
-
-    public void setPublishedDate(LocalDateTime publishedDate) {
-        this.publishedDate = publishedDate;
     }
 }

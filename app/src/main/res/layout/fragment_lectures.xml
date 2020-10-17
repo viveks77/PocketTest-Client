@@ -25,7 +25,7 @@
     <com.faltenreich.skeletonlayout.SkeletonLayout
         android:id="@+id/lecture_skeletonLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lectures_recyclerView"

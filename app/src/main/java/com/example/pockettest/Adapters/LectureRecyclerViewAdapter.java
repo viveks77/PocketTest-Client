@@ -3,6 +3,7 @@ package com.example.pockettest.Adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,14 @@ import com.example.pockettest.Model.VideoDetails;
 import com.example.pockettest.R;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.io.Serializable;
+import java.text.Format;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.Inflater;
 
@@ -45,8 +53,9 @@ public class LectureRecyclerViewAdapter extends RecyclerView.Adapter<LectureRecy
         holder.title.setText(videoDetails.getTitle());
         Picasso.get()
                 .load(videoDetails.getThumbnailURL())
-                .placeholder(R.drawable.play)
                 .into(holder.thumbnail);
+        holder.desc.setText(videoDetails.getDesc());
+        holder.publishedAt.setText(videoDetails.getPublishedDate().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
     }
 
     @Override
@@ -58,15 +67,20 @@ public class LectureRecyclerViewAdapter extends RecyclerView.Adapter<LectureRecy
 
         private TextView title;
         private ImageView thumbnail;
+        private TextView desc;
+        private TextView publishedAt;
         private Context context;
 
         public ViewHolder(@NonNull View itemView, Context ctx) {
             super(itemView);
             context = ctx;
 
-            title = itemView.findViewById(R.id.videoTitle);
-            thumbnail = itemView.findViewById(R.id.thumbnailId);
+            title = itemView.findViewById(R.id.video_title);
+            thumbnail = itemView.findViewById(R.id.thumbnail_id);
+            desc = itemView.findViewById(R.id.video_desc);
+            publishedAt = itemView.findViewById(R.id.video_publishedAt);
             itemView.setOnClickListener(this);
+
         }
 
         @Override

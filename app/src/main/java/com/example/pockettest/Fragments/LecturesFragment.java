@@ -22,9 +22,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pockettest.Adapters.LectureRecyclerViewAdapter;
+import com.example.pockettest.Adapters.PlayListRecyclerViewAdapter;
+import com.example.pockettest.Model.PlayListDetails;
 import com.example.pockettest.Model.VideoDetails;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Constants;
+import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.faltenreich.skeletonlayout.Skeleton;
 import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
@@ -41,9 +44,9 @@ public class LecturesFragment extends Fragment {
     private Context context;
     private Toolbar toolbar;
     private Skeleton skeleton;
-    private List<VideoDetails> videoList;
+    private List<PlayListDetails> playList;
     private RecyclerView recyclerView;
-    private LectureRecyclerViewAdapter lectureRecyclerViewAdapter;
+    private PlayListRecyclerViewAdapter playListRecyclerViewAdapter;
 
     public LecturesFragment() {
     }
@@ -64,15 +67,15 @@ public class LecturesFragment extends Fragment {
         recyclerView = view.findViewById(R.id.lectures_recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.video_list, 3);
+        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.youtube_playlist, 3);
         skeleton.showSkeleton();
         skeleton.setShimmerDurationInMillis(1000);
-        videoList = new ArrayList<>();
-        fetchVideoList();
+        playList = new ArrayList<>();
+        fetchPlayList();
     }
 
-    private void fetchVideoList(){
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constants.YOUTUBE_API_URL + Constants.YOUTUBE_API_KEY, new Response.Listener<String>() {
+    private void fetchPlayList(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.YOUTUBE_API_PLAYLIST_URL + Urls.YOUTUBE_API_KEY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 skeleton.showOriginal();
@@ -83,7 +86,7 @@ public class LecturesFragment extends Fragment {
                     for(int i =0 ;i < items.length(); i++){
                         JSONObject parentObj = items.getJSONObject(i);
                         JSONObject parentId = parentObj.getJSONObject("id");
-                        String videoId = parentId.getString("videoId");
+                        String playListId = parentId.getString("playlistId");
                         JSONObject snippet = parentObj.getJSONObject("snippet");
                         String title = snippet.getString("title");
                         String description = snippet.getString("description");
@@ -91,21 +94,20 @@ public class LecturesFragment extends Fragment {
                         JSONObject highThumbnailObj = parentThumbnailsObj.getJSONObject("high");
                         String thumbnailUrl = highThumbnailObj.getString("url");
 
-                        VideoDetails videoDetails = new VideoDetails();
-                        videoDetails.setVideoId(videoId);
-                        videoDetails.setTitle(title);
-                        videoDetails.setDesc(description);
-                        videoDetails.setThumbnailURL(thumbnailUrl);
-                        videoList.add(videoDetails);
+                        PlayListDetails playListDetails = new PlayListDetails();
+                        playListDetails.setPlayListId(playListId);
+                        playListDetails.setTitle(title);
+                        playListDetails.setDesc(description);
+                        playListDetails.setThumbnailURL(thumbnailUrl);
+                        playList.add(playListDetails);
                     }
 
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
-
-                lectureRecyclerViewAdapter = new LectureRecyclerViewAdapter(videoList, context);
-                recyclerView.setAdapter(lectureRecyclerViewAdapter);
-                lectureRecyclerViewAdapter.notifyDataSetChanged();
+                playListRecyclerViewAdapter = new PlayListRecyclerViewAdapter(context, playList);
+                recyclerView.setAdapter(playListRecyclerViewAdapter);
+                playListRecyclerViewAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -116,4 +118,5 @@ public class LecturesFragment extends Fragment {
 
         VolleySingleton.getInstance(context).addToRequestQueue(stringRequest);
     }
+
 }
