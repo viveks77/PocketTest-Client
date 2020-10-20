@@ -22,8 +22,8 @@
                 android:id="@+id/test_question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
                 android:textSize="20dp"
-                android:textColor="@color/black"
                 android:layout_marginVertical="10dp"
                 android:text="This is the first question" />
 
@@ -35,25 +35,25 @@
                 android:layout_below="@+id/test_question">
                     <RadioButton
                         android:id="@+id/test_answer_1"
-                        android:layout_marginVertical="5dp"
+                        android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
-                        android:layout_marginVertical="5dp"
                         android:id="@+id/test_answer_2"
                         android:layout_width="match_parent"
+                        android:textColor="@android:color/black"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
                         android:id="@+id/test_answer_3"
-                        android:layout_marginVertical="5dp"
+                        android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                     <RadioButton
                         android:id="@+id/test_answer_4"
-                        android:layout_marginVertical="5dp"
+                        android:textColor="@android:color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
             </RadioGroup>

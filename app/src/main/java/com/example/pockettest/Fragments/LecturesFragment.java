@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.android.volley.Request;
@@ -63,6 +64,7 @@ public class LecturesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         skeleton = view.findViewById(R.id.lecture_skeletonLayout);
+
 
         recyclerView = view.findViewById(R.id.lectures_recyclerView);
         recyclerView.setHasFixedSize(true);

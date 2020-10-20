@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -24,6 +24,8 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textSize="20sp"
+                style="@style/TextAppearance.MaterialComponents.Headline1"
+                android:textColor="@android:color/black"
                 android:layout_margin="5dp"
                 android:text="QuizTitle" />
 
@@ -33,9 +35,53 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:textSize="15sp"
-                android:layout_margin="5dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="2dp"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@android:color/black"
                 android:layout_below="@+id/quizTitle"
                 android:text="Quiz Description" />
+
+            <TextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="13sp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="2dp"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/quizDescription"
+                android:text="date" />
+            <TextView
+                android:id="@+id/temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="13sp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="2dp"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/quizDescription"
+                android:layout_toRightOf="@+id/startTime"
+                android:text="TO" />
+
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textSize="13sp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="2dp"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@android:color/black"
+                android:layout_below="@+id/quizDescription"
+                android:layout_toRightOf="@+id/temp"
+                android:text="END date" />
+
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

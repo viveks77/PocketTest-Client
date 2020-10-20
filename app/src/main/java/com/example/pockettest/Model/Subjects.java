@@ -2,30 +2,25 @@ package com.example.pockettest.Model;
 
 public class Subjects {
 
-    private String subjects;
-    private int thumbnail;
+    private String name;
+    private String slug;
 
     public Subjects() {
     }
 
-    public Subjects(String subjects, int thumbnail) {
-        this.subjects = subjects;
-        this.thumbnail=thumbnail;
+    public String getName() {
+        return name;
     }
 
-    public String getSubjects() {
-        return subjects;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setSubjects(String subjects) {
-        this.subjects = subjects;
+    public String getSlug() {
+        return slug;
     }
 
-    public int getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(int thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

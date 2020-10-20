@@ -25,6 +25,7 @@ import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,9 +37,9 @@ import java.util.Map;
 public class EditProfile extends AppCompatActivity {
 
     private Button save;
-    private EditText name;
-    private EditText mobile;
-    private EditText loc;
+    private TextInputEditText name;
+    private TextInputEditText mobile;
+    private TextInputEditText loc;
     private Button cancel;
     UserDataBaseHandler db;
 
@@ -48,15 +49,12 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         cancel = findViewById(R.id.edit_profile_cancel);
         save = findViewById(R.id.edit_profile_save);
-        name = findViewById(R.id.edit_profile_changeName);
-        mobile = findViewById(R.id.edit_profile_changeMobile);
-        loc = findViewById(R.id.edit_profile_changeLoc);
+        name = findViewById(R.id.edit_profile_name_field);
+        mobile = findViewById(R.id.edit_profile_mobile_no_field);
+        loc = findViewById(R.id.edit_profile_location_field);
         db = new UserDataBaseHandler(this);
 
         User user = db.getUser();
-        name.setHint(user.getName());
-        mobile.setHint(user.getMobileNo());
-        loc.setHint(user.getLocation());
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,9 +80,6 @@ public class EditProfile extends AppCompatActivity {
         if(name.getText().toString().length() != 0){
             user.setName(name.getText().toString());
         }
-        if(mobile.getText().toString().length() != 0){
-            user.setMobileNo(mobile.getText().toString());
-        }
         if(loc.getText().toString().length() != 0){
             user.setLocation(loc.getText().toString());
         }
@@ -98,7 +93,6 @@ public class EditProfile extends AppCompatActivity {
 
 
                     user.setName(userObj.getString("name"));
-                    user.setMobileNo(userObj.getString("mobile_no"));
                     user.setLocation(userObj.getString("location"));
                     db.updateUser(user);
                     Intent intent = new Intent(EditProfile.this, MainActivity.class);
@@ -140,7 +134,6 @@ public class EditProfile extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("name", user.getName());
-                params.put("mobile_no", user.getMobileNo());
                 params.put("location", user.getLocation());
                 return params;
             }

@@ -53,7 +53,7 @@ public class VideoListAcivity extends AppCompatActivity {
         videoList = new ArrayList<>();
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(VideoListAcivity.this));
-        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.activity_video_list_acivity, 3);
+        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.video_list, 5);
         skeleton.showSkeleton();
         skeleton.setShimmerDurationInMillis(1000);
         fetchVideoList();

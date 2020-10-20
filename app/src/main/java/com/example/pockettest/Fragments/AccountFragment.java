@@ -61,7 +61,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         email = view.findViewById(R.id.account_email);
         mobileNo = view.findViewById(R.id.account_mobile);
         editProfile = view.findViewById(R.id.account_editProfile);
-        starredQuizes = view.findViewById(R.id.account_starredQuiz);
         givenQuizes = view.findViewById(R.id.account_quiz_taken);
         allquizes=view.findViewById(R.id.account_quiz_history);
         logOut = view.findViewById(R.id.account_logout);
@@ -72,8 +71,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         mobileNo.setText("+91-"+user.getMobileNo());
 
         editProfile.setOnClickListener(this);
-        starredQuizes.setOnClickListener(this);
         givenQuizes.setOnClickListener(this);
+        allquizes.setOnClickListener(this);
         logOut.setOnClickListener(this);
     }
 
@@ -83,9 +82,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
             case R.id.account_editProfile:
                 Log.d("pressed", "Button pressed");
                 startActivity(new Intent(getActivity(), EditProfile.class));
-                break;
-            case R.id.account_starredQuiz:
-                //todo
                 break;
             case R.id.account_quiz_taken:
                 //todo

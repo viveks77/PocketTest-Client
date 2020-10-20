@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pockettest.Model.Subjects;
 import com.example.pockettest.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,8 +38,12 @@ public class MainFAdapter extends RecyclerView.Adapter<MainFAdapter.MainviewHold
 
     @Override
     public void onBindViewHolder(@NonNull MainviewHolder holder, int position) {
-       holder.subject_name.setText(subjectsList.get(position).getSubjects());
-       holder.subject_thumbnail.setImageResource(subjectsList.get(position).getThumbnail());
+       Subjects subject = subjectsList.get(position);
+       holder.subject_name.setText(subject.getName());
+        Picasso.get()
+                .load(R.drawable.exam_img)
+                .into(holder.subject_thumbnail);
+       //holder.subject_thumbnail.setImageResource(subjectsList.get(position).getThumbnail());
 
     }
 

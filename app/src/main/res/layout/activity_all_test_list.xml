@@ -5,34 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activites.VideoListAcivity">
+    tools:context=".Activites.AllTestListActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/video_list_topBar"
+            android:id="@+id/activity_all_test_list"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Lectures"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             />
 
     </com.google.android.material.appbar.AppBarLayout>
-    <androidx.core.widget.NestedScrollView
+    <TextView
+        android:id="@+id/alltest_list_textview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.faltenreich.skeletonlayout.SkeletonLayout
-            android:id="@+id/video_skeletonLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:gravity="center"
+        android:paddingVertical="5dp"
+        android:text="No Quizes are here yet."
+        android:visibility="gone"
+        />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/video_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.faltenreich.skeletonlayout.SkeletonLayout>
-    </androidx.core.widget.NestedScrollView>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/alltest_list_recyclerview"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"/>
 </LinearLayout>

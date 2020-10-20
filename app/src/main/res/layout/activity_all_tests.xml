@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activites.AllTestsActivity">
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        />
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="All conducted tests"
-    android:textSize="20dp"
-    android:padding="16dp"
-    android:textAlignment="center"
-    />
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/alltest_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="All Quizes"
+            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_all"
         android:layout_width="match_parent"
