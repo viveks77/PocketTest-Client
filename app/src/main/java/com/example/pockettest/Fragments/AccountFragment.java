@@ -24,6 +24,7 @@ import com.example.pockettest.Activites.AllTestsActivity;
 import com.example.pockettest.Activites.EditProfile;
 import com.example.pockettest.Activites.GivenTestActivity;
 import com.example.pockettest.Activites.LoginActivity;
+import com.example.pockettest.Activites.SplashActivity;
 import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
 import com.example.pockettest.Model.User;
@@ -103,7 +104,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
             public void onResponse(String response) {
                 db.deleteUser();
                 SharedPrefManager.getInstance(getActivity()).deleteToken();
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                startActivity(new Intent(getContext(), SplashActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, new Response.ErrorListener() {

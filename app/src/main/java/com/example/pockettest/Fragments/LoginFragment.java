@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -132,20 +133,34 @@ public class LoginFragment extends BottomSheetDialogFragment {
                     JSONObject obj = new JSONObject(response);
 
                     JSONObject userObj = obj.getJSONObject("user");
+                    if(userObj.getBoolean("is_student")){
+                        User user = new User();
+                        user.setEmail(userObj.getString("email"));
+                        user.setName(userObj.getString("name"));
+                        user.setMobileNo(userObj.getString("mobile_no"));
+                        user.setLocation(userObj.getString("location"));
+                        user.setClass_no(userObj.getString("class_no"));
+                        //adding user to database
+                        db.addUser(user);
 
-                    User user = new User();
-                    user.setEmail(userObj.getString("email"));
-                    user.setName(userObj.getString("name"));
-                    user.setMobileNo(userObj.getString("mobile_no"));
-                    user.setLocation(userObj.getString("location"));
-                    user.setClass_no(userObj.getString("class_no"));
-                    //adding user to database
-                    db.addUser(user);
+                        //setting up Auth token
+                        String token = obj.getString("token");
+                        SharedPrefManager.getInstance(context).generateToken(token);
+                        startActivity(new Intent(context, MainActivity.class));
+                    }else{
+                        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                        alert.setTitle("Signup Successful.")
+                                .setMessage("Please wait for verification from admin to proceed further")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        context.startActivity(new Intent(context, LoginActivity.class));
+                                    }
+                                });
+                        AlertDialog alertDialog = alert.create();
+                        alertDialog.show();
+                    }
 
-                    //setting up Auth token
-                    String token = obj.getString("token");
-                    SharedPrefManager.getInstance(context).generateToken(token);
-                    startActivity(new Intent(context, MainActivity.class));
                 }catch(JSONException e){
                     e.printStackTrace();
                 }
