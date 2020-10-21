@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -56,41 +57,98 @@ public class AllTestListActivity extends AppCompatActivity {
         textView = findViewById(R.id.alltest_list_textview);
         recyclerView = findViewById(R.id.alltest_list_recyclerview);
         quizList = new ArrayList<>();
-        getQuiz();
-        if(quizList.size() == 0){
-            textView.setVisibility(View.VISIBLE);
+        if(bundle.getBoolean("isGiven")){
+            Toast.makeText(AllTestListActivity.this, "isGiven", Toast.LENGTH_SHORT).show();
+            getGivenQuiz();
+        }else if(bundle.getBoolean("isAll")) {
+            Toast.makeText(AllTestListActivity.this, "isAll", Toast.LENGTH_SHORT).show();
+            getAllQuiz();
+
         }
         adapter = new AllTestListRecyclerViewAdapter(AllTestListActivity.this, quizList);
         recyclerView.setLayoutManager(new LinearLayoutManager(AllTestListActivity.this));
         recyclerView.setAdapter(adapter);
+
     }
 
-    public void getQuiz(){
+    public void getAllQuiz(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + slug + Urls.GET_QUIZ, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
-                    JSONArray parentArray = new JSONArray(response);
-                    for (int i = 0; i < parentArray.length(); i++) {
-                        JSONObject quizObj = parentArray.getJSONObject(i);
-                        Quiz quiz = new Quiz();
-                        quiz.setTitle(quizObj.getString("title"));
-                        quiz.setDescription(quizObj.getString("description"));
-                        quiz.setTotal_marks(quizObj.getString("total_marks"));
-                        quiz.setPrimary_key(quizObj.getString("pk"));
-                        quiz.setPublish_date(LocalDateTime.parse(quizObj.getString("publish_date")));
-                        quiz.setEnd_time(LocalDateTime.parse(quizObj.getString("end_date")));
-                        LocalDateTime dateTime = LocalDateTime.now();
-                        int endTimeDiff = dateTime.compareTo(quiz.getEnd_time());
-                        Log.d("datetime", String.valueOf(endTimeDiff));
-                        if(endTimeDiff > 0){
-                            quizList.add(quiz);
+                if(response.length() <= 2){
+                    textView.setVisibility(View.VISIBLE);
+                }else {
+                    try {
+                        JSONArray parentArray = new JSONArray(response);
+                        for (int i = 0; i < parentArray.length(); i++) {
+                            JSONObject quizObj = parentArray.getJSONObject(i);
+                            Quiz quiz = new Quiz();
+                            quiz.setTitle(quizObj.getString("title"));
+                            quiz.setDescription(quizObj.getString("description"));
+                            quiz.setTotal_marks(quizObj.getString("total_marks"));
+                            quiz.setPrimary_key(quizObj.getString("pk"));
+                            quiz.setPublish_date(LocalDateTime.parse(quizObj.getString("publish_date")));
+                            quiz.setEnd_time(LocalDateTime.parse(quizObj.getString("end_date")));
+                            LocalDateTime dateTime = LocalDateTime.now();
+                            int endTimeDiff = dateTime.compareTo(quiz.getEnd_time());
+                            Log.d("datetime", String.valueOf(endTimeDiff));
+                            if (endTimeDiff > 0) {
+                                quizList.add(quiz);
+                            }
                         }
+                        adapter.notifyDataSetChanged();
+                        textView.setVisibility(View.GONE);
+                    } catch (JSONException e) {
+                        Log.d("error", e.getMessage());
                     }
-                    adapter.notifyDataSetChanged();
-                    textView.setVisibility(View.GONE);
-                } catch (JSONException e) {
-                    Log.d("error", e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("error response", error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + SharedPrefManager.getInstance(AllTestListActivity.this).getToken());
+                return headers;
+            }
+        };
+        VolleySingleton.getInstance(AllTestListActivity.this).addToRequestQueue(stringRequest);
+    }
+
+    public void getGivenQuiz(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + slug + Urls.MY_QUIZ, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if(response.length() <= 2){
+                    textView.setVisibility(View.VISIBLE);
+                }else {
+                    try {
+                        JSONArray parentArray = new JSONArray(response);
+                        for (int i = 0; i < parentArray.length(); i++) {
+                            JSONObject quizObj = parentArray.getJSONObject(i);
+                            Quiz quiz = new Quiz();
+                            quiz.setTitle(quizObj.getString("title"));
+                            quiz.setDescription(quizObj.getString("description"));
+                            quiz.setTotal_marks(quizObj.getString("total_marks"));
+                            quiz.setPrimary_key(quizObj.getString("pk"));
+                            quiz.setPublish_date(LocalDateTime.parse(quizObj.getString("publish_date")));
+                            quiz.setEnd_time(LocalDateTime.parse(quizObj.getString("end_date")));
+                            LocalDateTime dateTime = LocalDateTime.now();
+                            int endTimeDiff = dateTime.compareTo(quiz.getEnd_time());
+                            Log.d("datetime", String.valueOf(endTimeDiff));
+                            if (endTimeDiff > 0) {
+                                quizList.add(quiz);
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                        textView.setVisibility(View.GONE);
+                    } catch (JSONException e) {
+                        Log.d("error", e.getMessage());
+                    }
                 }
             }
         }, new Response.ErrorListener() {

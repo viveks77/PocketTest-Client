@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pockettest.Activites.AllTestListActivity;
@@ -19,21 +18,19 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import javax.security.auth.Subject;
-
-public class AllTestRecyclerViewAdapter extends RecyclerView.Adapter<AllTestRecyclerViewAdapter.ViewHolder> {
+public class GivenTestRecyclerViewAdapter extends RecyclerView.Adapter<GivenTestRecyclerViewAdapter.ViewHolder> {
 
     private Context context;
     private List<Subjects> subjectList;
 
-    public AllTestRecyclerViewAdapter(Context context, List<Subjects> subjectList) {
+    public GivenTestRecyclerViewAdapter(Context context, List<Subjects> subjectList) {
         this.context = context;
         this.subjectList = subjectList;
     }
 
     @NonNull
     @Override
-    public AllTestRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GivenTestRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         LayoutInflater layoutInflater= LayoutInflater.from(context);
         view=layoutInflater.inflate(R.layout.fragment_main_items,parent,false);
@@ -41,7 +38,7 @@ public class AllTestRecyclerViewAdapter extends RecyclerView.Adapter<AllTestRecy
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AllTestRecyclerViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GivenTestRecyclerViewAdapter.ViewHolder holder, int position) {
         Subjects subject = subjectList.get(position);
         holder.subject_name.setText(subject.getName());
         Picasso.get()
@@ -68,14 +65,13 @@ public class AllTestRecyclerViewAdapter extends RecyclerView.Adapter<AllTestRecy
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(View view) {
             Subjects subject = subjectList.get(getAdapterPosition());
             Intent intent = new Intent(ctx, AllTestListActivity.class);
             intent.putExtra("name", subject.getName());
             intent.putExtra("slug",subject.getSlug());
-            intent.putExtra("isAll", true);
+            intent.putExtra("isGiven", true);
             ctx.startActivity(intent);
-
         }
     }
 }

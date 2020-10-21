@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.pockettest.Activites.AllTestsActivity;
 import com.example.pockettest.Activites.EditProfile;
+import com.example.pockettest.Activites.GivenTestActivity;
 import com.example.pockettest.Activites.LoginActivity;
 import com.example.pockettest.DataBase.SharedPrefManager;
 import com.example.pockettest.DataBase.UserDataBaseHandler;
@@ -84,7 +85,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(getActivity(), EditProfile.class));
                 break;
             case R.id.account_quiz_taken:
-                //todo
+                startActivity(new Intent(getActivity(), GivenTestActivity.class));
                 break;
             case R.id.account_quiz_history:
                 startActivity(new Intent(getActivity(), AllTestsActivity.class));
