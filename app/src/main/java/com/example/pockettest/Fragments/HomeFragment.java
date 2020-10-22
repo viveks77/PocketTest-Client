@@ -68,7 +68,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         context = view.getContext();
         //mainf_rv=view.findViewById(R.id.main_fragment_rv);
-
+/*
         swipeRefreshLayout = view.findViewById(R.id.home_swipe_refresh);
         upComingTextView = view.findViewById(R.id.home_upComing_textView);
         onGoingTextView = view.findViewById(R.id.home_onGoing_textView);
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
         onGoingQuizList = new ArrayList<>();
         upComingQuizList = new ArrayList<>();
 
-        ongoing_rv = view.findViewById(R.id.ongoing_rv);
+        ongoing_rv = view.findViewById(R.id.ongoing_rv);*/
         ongoing_rv.setNestedScrollingEnabled(false);
         ongoing_rv.setLayoutManager(new LinearLayoutManager(context));
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

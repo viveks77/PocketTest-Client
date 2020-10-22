@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +41,7 @@ public class MainFragment extends Fragment {
     List<Subjects> subjectsList;
     Context context;
     MainFAdapter mainFAdapter;
+    CardView maincardview;
 
     public MainFragment() {
 
@@ -48,6 +51,20 @@ public class MainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        maincardview=container.findViewById(R.id.mainf_cardview);
+/*
+        maincardview.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction=getFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_frame,new HomeFragment());
+                transaction.commit();
+            }
+        });
+*/
+
+
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 

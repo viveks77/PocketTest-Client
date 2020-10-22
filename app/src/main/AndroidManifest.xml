@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activites.GivenTestActivity"></activity>
+        <activity android:name=".Activites.HomeActivity"></activity>
+        <activity android:name=".Activites.GivenTestActivity" />
         <activity android:name=".Activites.AllTestListActivity" />
         <activity android:name=".Activites.VideoListAcivity" />
         <activity android:name=".Activites.AllTestsActivity" />
