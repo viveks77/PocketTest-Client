@@ -178,7 +178,7 @@ public class SignupFragment extends BottomSheetDialogFragment {
             jsonObject.put("location",location.getText().toString());
             jsonObject.put("class_no",getClassID(class_no.getText().toString()));
         }catch(JSONException e){
-            Log.d("JSONException:singupFrag", e.toString());
+            Toast.makeText(context, "Server Error. Please restart the app.", Toast.LENGTH_SHORT).show();
         }
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, Urls.BASE_URL + Urls.REGISTER_URL, jsonObject, new Response.Listener<JSONObject>() {

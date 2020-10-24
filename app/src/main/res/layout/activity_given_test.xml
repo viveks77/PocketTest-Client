@@ -16,7 +16,7 @@
             android:id="@+id/giventest_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="Given Quizes"
+            app:title="@string/activity_given_test_title"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             />
 

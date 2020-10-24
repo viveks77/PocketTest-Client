@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="REGISTER"
+            android:text="@string/frag_signup_title"
             android:textColor="@android:color/black"
             android:layout_marginTop="25dp"
             android:textSize="45sp"
@@ -29,7 +29,7 @@
                 android:id="@+id/name_input_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/frag_signup_name"
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name_input_layout"
-                android:hint="Email"
+                android:hint="@string/frag_signup_email"
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Password"
+                android:hint="@string/frag_signup_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -76,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Confirm password"
+                android:hint="@string/frag_signup_confirm_pass"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +93,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Mobile number"
+                android:hint="@string/frag_signup_mobile"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -112,7 +112,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
-                android:hint="Class">
+                android:hint="@string/frag_signup_clas">
                 <AutoCompleteTextView
                     android:id="@+id/class_input_dropdown"
                     android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Address"
+                android:hint="@string/frag_signup_address"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:padding="12dp"
                 android:textSize="20sp"
-                android:text="REGISTER"
+                android:text="@string/register_button"
                 android:layout_below="@+id/location_input_layout"/>
         </RelativeLayout>
 

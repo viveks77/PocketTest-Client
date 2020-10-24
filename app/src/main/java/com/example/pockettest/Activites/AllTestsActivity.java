@@ -20,6 +20,7 @@ import com.example.pockettest.Model.Subjects;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,14 +65,14 @@ public class AllTestsActivity extends AppCompatActivity {
                         subjectList.add(subject);
                     }
                 }catch (JSONException e){
-                    Log.d("MainFragment:onResponse", e.toString());
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
                 mainFAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
             }
         }) {
             @Override

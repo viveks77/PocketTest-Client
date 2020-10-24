@@ -24,7 +24,7 @@
             android:id="@+id/main_test_submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="button"
+            android:text="@string/submit_button"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_corner_button"
             android:textColor="#FFFFFF"

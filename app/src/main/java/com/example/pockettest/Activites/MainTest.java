@@ -175,12 +175,13 @@ public class MainTest extends AppCompatActivity {
                     testAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     Log.d("error :  ", e.getMessage());
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact Staff member.", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error on response", error.getMessage());
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member.", Snackbar.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -208,7 +209,7 @@ public class MainTest extends AppCompatActivity {
                     answers.put("answer", pair.getValue().toString());
                     obj.put(answers);
                 }catch (JSONException e){
-                    Log.d("jsonException", e.toString());
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
             }
             Log.d("answers", obj.toString());
@@ -237,13 +238,13 @@ public class MainTest extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }catch (JSONException e){
-                    Log.d("Error response", e.toString());
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member.", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.toString());
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member", Snackbar.LENGTH_SHORT).show();
             }
         }) {
 

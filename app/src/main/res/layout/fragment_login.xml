@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="WELCOME"
+            android:text="@string/frag_login_title"
             android:textColor="@android:color/black"
             android:layout_marginTop="35dp"
             android:textSize="45sp"
@@ -29,7 +29,7 @@
                     android:id="@+id/text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Email"
+                    android:hint="@string/frag_login_email"
                     android:layout_marginBottom="20dp"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     >
@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:hint="Password"
+                android:hint="@string/frag_login_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:padding="12dp"
                     android:textSize="20sp"
-                    android:text="LOGIN"
+                    android:text="@string/login_button"
                     android:layout_below="@+id/input_layout"/>
             <TextView
                 android:id="@+id/login_forget_password"
@@ -69,29 +69,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Forget password ?"
+                android:layout_marginBottom="50dp"
+                android:text="@string/frag_login_forgot_pass"
                 />
 
-            <TextView
-                android:id="@+id/login_layout_or"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/login_forget_password"
-                android:layout_marginTop="25dp"
-                android:layout_centerHorizontal="true"
-                android:text="OR"
-                android:textSize="25sp"
-                />
-            <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/login_layout_or"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:text="GOOGLE"
-                android:padding="12dp"
-                android:textSize="20sp"
-                />
         </RelativeLayout>
 
 

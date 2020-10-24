@@ -32,6 +32,7 @@ import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
 import com.faltenreich.skeletonlayout.Skeleton;
 import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -106,6 +107,7 @@ public class LecturesFragment extends Fragment {
 
                 }catch(JSONException e){
                     e.printStackTrace();
+                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
                 playListRecyclerViewAdapter = new PlayListRecyclerViewAdapter(context, playList);
                 recyclerView.setAdapter(playListRecyclerViewAdapter);
@@ -115,6 +117,7 @@ public class LecturesFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("error", error.getMessage());
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
             }
         });
 

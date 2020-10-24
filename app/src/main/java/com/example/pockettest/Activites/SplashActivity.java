@@ -15,6 +15,7 @@ import com.example.pockettest.Model.Standard;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,13 +62,14 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     SplashActivity.this.finish();
                 }catch (JSONException e){
-                    Log.d("splash activity", "JSONExcption error");
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("on Response Error",error.toString());
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Sever Error. Please restart the app.", Snackbar.LENGTH_SHORT).show();
             }
         });
         VolleySingleton.getInstance(SplashActivity.this).addToRequestQueue(stringRequest);

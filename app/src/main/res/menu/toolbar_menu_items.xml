@@ -4,6 +4,5 @@
     <item android:id="@+id/search_icon"
         android:icon="@drawable/search_icon"
         android:title="Search"
-        app:actionViewClass="com.arlib.floatingsearchview.FloatingSearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 </menu>

@@ -5,18 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activites.YoutubeVideoPlayer">
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/youtube_swipe_refresh"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-                android:id="@+id/youtubeVideoPlayerId"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:showYouTubeButton="false"
-                app:showFullScreenButton="false"
-                />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/youtube_video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -162,7 +162,7 @@ public class LoginFragment extends BottomSheetDialogFragment {
                     }
 
                 }catch(JSONException e){
-                    e.printStackTrace();
+                    Toast.makeText(context, "Internal Server Error. Please contact the administration",  Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -177,16 +177,13 @@ public class LoginFragment extends BottomSheetDialogFragment {
 
                         JSONObject obj = new JSONObject(res);
                         JSONArray errorArray = obj.getJSONArray("non_field_errors");
-                        //Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),"Incorrect Credentials", Snackbar.LENGTH_SHORT).show();
                         Toast.makeText(context, "Incorrect Credentials", Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException e1) {
                         Toast.makeText(context, "Oops!, Something went wrong", Toast.LENGTH_SHORT).show();
-                        //Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),"Oops! Something went wrong", Snackbar.LENGTH_SHORT).show();
                         e1.printStackTrace();
                     } catch (JSONException e2) {
-
                         Log.d("error message", "returned data is not JSONObject?");
-                        //Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),"Oops! Something went wrong", Snackbar.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Server error. Please contact the administration.",  Toast.LENGTH_SHORT).show();
                         e2.printStackTrace();
                     }
                 }

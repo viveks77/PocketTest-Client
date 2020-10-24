@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
-            android:text="Subject"
+            android:text="@string/frag_main_items_subject"
             android:textColor="@android:color/black"
             android:textSize="15sp"
             app:textAllCaps="true" />

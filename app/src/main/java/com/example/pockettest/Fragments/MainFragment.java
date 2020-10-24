@@ -27,6 +27,7 @@ import com.example.pockettest.Model.Subjects;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,19 +53,6 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         maincardview=container.findViewById(R.id.mainf_cardview);
-/*
-        maincardview.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction=getFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_frame,new HomeFragment());
-                transaction.commit();
-            }
-        });
-*/
-
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -97,14 +85,14 @@ public class MainFragment extends Fragment {
                         subjectsList.add(subject);
                     }
                 }catch (JSONException e){
-                    Log.d("MainFragment:onResponse", e.toString());
+                    Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
                 mainFAdapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
             }
         }) {
             @Override

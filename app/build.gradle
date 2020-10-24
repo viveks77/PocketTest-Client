@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.faltenreich:skeletonlayout:2.1.0'
     implementation 'com.mobsandgeeks:android-saripaar:2.0.2'
     implementation 'com.google.android.material:material:1.2.0-alpha03'
+    implementation files('D:\\softwares and tutorials\\Tutorials\\Resources\\Android_resouces\\YouTubeAndroidPlayerApi.jar')
 
 
 }

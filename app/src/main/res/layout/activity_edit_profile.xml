@@ -75,7 +75,7 @@
                 android:id="@+id/edit_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/activity_edit_profile_name"
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
@@ -90,7 +90,7 @@
                 android:layout_below="@+id/edit_profile_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mobile number"
+                android:hint="@string/activity_edit_profile_mobile_no"
                 android:layout_marginBottom="20dp"
                 android:visibility="gone"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -106,7 +106,7 @@
                 android:layout_below="@+id/edit_profile_mobile_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Location"
+                android:hint="@string/activity_edit_profile_location"
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/edit_profile_location"
-                android:text="Edit atleast one field and hit save."
+                android:text="@string/activity_edit_profile_helper"
                 />
             </RelativeLayout>
 

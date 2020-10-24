@@ -22,12 +22,11 @@ import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
-import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -99,14 +98,14 @@ public class AllTestListActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         textView.setVisibility(View.GONE);
                     } catch (JSONException e) {
-                        Log.d("error", e.getMessage());
+                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later.", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error response", error.getMessage());
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -147,14 +146,14 @@ public class AllTestListActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         textView.setVisibility(View.GONE);
                     } catch (JSONException e) {
-                        Log.d("error", e.getMessage());
+                        Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("error response", error.getMessage());
+                Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
             }
         }) {
             @Override

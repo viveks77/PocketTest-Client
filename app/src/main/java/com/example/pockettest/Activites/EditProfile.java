@@ -101,7 +101,7 @@ public class EditProfile extends AppCompatActivity {
                     finish();
                     startActivity(intent);
                 }catch(JSONException e){
-                    e.printStackTrace();
+                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -114,7 +114,6 @@ public class EditProfile extends AppCompatActivity {
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 
                         JSONObject obj = new JSONObject(res);
-                        //JSONArray errorArray = obj.getJSONArray("mobile_no");
                         Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content),"Oops! Something went wrong", Snackbar.LENGTH_SHORT).show();
 
                     } catch (UnsupportedEncodingException e1) {

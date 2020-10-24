@@ -15,7 +15,7 @@
             android:id="@+id/alltest_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="All Quizes"
+            app:title="@string/activity_all_tests_allquizes"
             style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
             />
 

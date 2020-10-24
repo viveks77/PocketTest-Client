@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="60dp"
-                android:text="Vivek Surya"
+                android:text="@string/frag_account_name"
                 android:textColor="#ffffff"
                 android:textSize="30sp"
                 android:textStyle="bold" />
@@ -52,7 +52,7 @@
                 android:layout_below="@+id/account_name"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
-                android:text="vik@gmail.com"
+                android:text="@string/frag_account_email"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
 
@@ -64,7 +64,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="8dp"
 
-                android:text="+91-9999999999"
+                android:text="@string/frag_account_mobile"
                 android:textColor="#ffffff"
                 android:textSize="12sp" />
         </RelativeLayout>
