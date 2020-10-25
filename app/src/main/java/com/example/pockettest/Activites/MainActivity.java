@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.example.pockettest.Fragments.AccountFragment;
-import com.example.pockettest.Fragments.HomeFragment;
 import com.example.pockettest.Fragments.LecturesFragment;
 import com.example.pockettest.Fragments.MainFragment;
 import com.example.pockettest.Model.Quiz;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout main_frame;
-    private HomeFragment homeFragment;
     private MainFragment mainFragment;
     private LecturesFragment lecturesFragment;
     private AccountFragment accountFragment;
@@ -60,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         setContentView(R.layout.activity_main);
         main_frame = findViewById(R.id.main_frame);
-        homeFragment = new HomeFragment();
         lecturesFragment = new LecturesFragment();
         accountFragment = new AccountFragment();
         mainFragment=new MainFragment();

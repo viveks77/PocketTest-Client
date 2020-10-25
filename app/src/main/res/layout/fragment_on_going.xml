@@ -3,10 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.OnGoingFragment">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ongoing_rv"
+    <TextView
+        android:id="@+id/ongoing_helper"
+        android:layout_marginVertical="20dp"
+        android:textAlignment="center"
+        android:text="@string/frag_ongoing_helper"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <com.faltenreich.skeletonlayout.SkeletonLayout
+        android:id="@+id/ongoing_skeletonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ongoing_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.faltenreich.skeletonlayout.SkeletonLayout>
+
 </LinearLayout>

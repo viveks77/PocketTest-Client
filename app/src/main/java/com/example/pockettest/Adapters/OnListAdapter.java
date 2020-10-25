@@ -15,6 +15,8 @@ import com.example.pockettest.Activites.StartTest;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 public class OnListAdapter extends RecyclerView.Adapter<OnListAdapter.OnViewHolder> {
@@ -35,11 +37,11 @@ public class OnListAdapter extends RecyclerView.Adapter<OnListAdapter.OnViewHold
 
     @Override
     public void onBindViewHolder(@NonNull OnListAdapter.OnViewHolder holder, int position) {
-        String quiz_title=quiz_list.get(position).getTitle();
-        String quiz_description=quiz_list.get(position).getDescription();
-        holder.title.setText(quiz_title);
-        holder.desc.setText(quiz_description);
-
+        Quiz quiz = quiz_list.get(position);
+        holder.title.setText(quiz.getTitle());
+        holder.desc.setText(quiz.getDescription());
+        holder.startTime.setText(quiz.getPublish_date().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
+        holder.endTime.setText(quiz.getEnd_time().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
     }
 
     @Override
@@ -51,12 +53,16 @@ public class OnListAdapter extends RecyclerView.Adapter<OnListAdapter.OnViewHold
         private Context context;
         private TextView title;
         private TextView desc;
+        private TextView startTime;
+        private TextView endTime;
 
         OnViewHolder(@NonNull View itemView) {
             super(itemView);
             context = ctx;
             title=itemView.findViewById(R.id.quizTitle);
             desc=itemView.findViewById(R.id.quizDescription);
+            startTime = itemView.findViewById(R.id.startTime);
+            endTime = itemView.findViewById(R.id.endTime);
             itemView.setOnClickListener(this);
         }
 

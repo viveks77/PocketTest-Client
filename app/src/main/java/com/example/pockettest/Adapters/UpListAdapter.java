@@ -15,6 +15,8 @@ import com.example.pockettest.Activites.StartTest;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.List;
 
 public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHolder> {
@@ -35,10 +37,11 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
 
     @Override
     public void onBindViewHolder(@NonNull UpListAdapter.UpViewHolder holder, int position) {
-     String upquiz_title=quiz_list.get(position).getTitle();
-     String upquiz_description=quiz_list.get(position).getDescription();
-     holder.uptitle.setText(upquiz_title);
-     holder.updescription.setText(upquiz_description);
+        Quiz quiz = quiz_list.get(position);
+        holder.title.setText(quiz.getTitle());
+        holder.desc.setText(quiz.getDescription());
+        holder.startTime.setText(quiz.getPublish_date().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
+        holder.endTime.setText(quiz.getEnd_time().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
     }
 
     @Override
@@ -50,14 +53,17 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
     public class UpViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private Context context;
-        private TextView uptitle;
-        private TextView updescription;
-
+        private TextView title;
+        private TextView desc;
+        private TextView startTime;
+        private TextView endTime;
         UpViewHolder(@NonNull View itemView) {
             super(itemView);
             context = ctx;
-            uptitle=itemView.findViewById(R.id.quizTitle);
-            updescription=itemView.findViewById(R.id.quizDescription);
+            title=itemView.findViewById(R.id.quizTitle);
+            desc=itemView.findViewById(R.id.quizDescription);
+            startTime = itemView.findViewById(R.id.startTime);
+            endTime = itemView.findViewById(R.id.endTime);
             itemView.setOnClickListener(this);
         }
 
