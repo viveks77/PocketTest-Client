@@ -54,17 +54,15 @@ public class StartTest extends AppCompatActivity {
         name = findViewById(R.id.start_test_name);
         desc = findViewById(R.id.start_test_description);
         marks = findViewById(R.id.start_total_marks);
-        publish_time = findViewById(R.id.start_test_total_time);
 
         name.setText(quiz.getTitle());
         desc.setText(quiz.getDescription());
-        marks.setText(quiz.getTotal_marks());
+        marks.setText("Total marks : " +quiz.getTotal_marks());
 
         starttest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 starttest();
-
             }
         });
 

@@ -80,7 +80,7 @@ public class MainTest extends AppCompatActivity {
         recyclerView = findViewById(R.id.main_test_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.activity_test, 3);
+        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.skeleton_layout_main_test, 3);
         skeleton.showSkeleton();
         skeleton.setShimmerDurationInMillis(1000);
         questions_list = getQuestions();
@@ -101,13 +101,7 @@ public class MainTest extends AppCompatActivity {
         setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                submitButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MainTest.this, ResultsActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                submitAnswers();
             }
         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
@@ -131,6 +125,7 @@ public class MainTest extends AppCompatActivity {
                     JSONObject parentObj = new JSONObject(response);
                     JSONObject quiz = parentObj.getJSONObject("quiz");
                     Object userquiz = quiz.get("userquiz_set");
+                    Log.d("maintest", userquiz.toString());
                     if(userquiz.toString() != "false"){
                         AlertDialog alertDialog = new AlertDialog.Builder(MainTest.this).create();
                         alertDialog.setTitle("Oops!");
@@ -181,6 +176,7 @@ public class MainTest extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d("onErrorResponse", error.toString());
                 Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member.", Snackbar.LENGTH_SHORT).show();
             }
         }) {
@@ -221,6 +217,7 @@ public class MainTest extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PATCH, Urls.BASE_URL + Urls.QUIZ + quiz.getPrimary_key() + Urls.SUBMIT_QUIZ, jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject obj) {
+                Log.d("response", obj.toString());
                 try {
                     Quiz quiz = new Quiz();
                     quiz.setTitle(obj.getString("title"));
@@ -238,12 +235,14 @@ public class MainTest extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }catch (JSONException e){
+                    Log.d("JSONException", e.toString());
                     Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member.", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.d("onErrorResponse", error.toString());
                 Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please contact staff member", Snackbar.LENGTH_SHORT).show();
             }
         }) {

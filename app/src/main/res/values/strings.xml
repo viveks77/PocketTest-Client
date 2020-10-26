@@ -14,7 +14,6 @@
     <string name="change_profile_picture">Change Profile Picture</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="cancel">Cancel</string>
     <string name="lecutres">Lectures</string>
     <string name="upcoming_tests">Upcoming Tests</string>
@@ -56,4 +55,5 @@
     <string name="quiz_list_helper">TO</string>
     <string name="search_button">Search</string>
     <string name="frag_ongoing_helper">No Quizes are here yet.</string>
+    <string name="activity_start_test_button">START TEST</string>
 </resources>

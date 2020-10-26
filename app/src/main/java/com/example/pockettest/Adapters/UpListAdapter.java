@@ -50,7 +50,7 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
         return quiz_list.size();
     }
 
-    public class UpViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class UpViewHolder extends RecyclerView.ViewHolder{
 
         private Context context;
         private TextView title;
@@ -64,15 +64,7 @@ public class UpListAdapter extends RecyclerView.Adapter<UpListAdapter.UpViewHold
             desc=itemView.findViewById(R.id.quizDescription);
             startTime = itemView.findViewById(R.id.startTime);
             endTime = itemView.findViewById(R.id.endTime);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            Quiz quiz = quiz_list.get(getAdapterPosition());
-            Intent intent = new Intent(context, StartTest.class);
-            intent.putExtra("quiz", quiz);
-            context.startActivity(intent);
-        }
     }
 }
