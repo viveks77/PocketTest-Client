@@ -110,7 +110,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("status", "error occured");
-                Toast.makeText(getContext(), "Oops! Something went wrong.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override

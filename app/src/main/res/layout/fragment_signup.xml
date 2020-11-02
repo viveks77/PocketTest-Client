@@ -33,11 +33,12 @@
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/name_input_field"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name_input_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/email_input_layout"
@@ -48,11 +49,12 @@
                 android:layout_marginBottom="20dp"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_input_layout"
@@ -63,12 +65,13 @@
                 android:hint="@string/frag_signup_password"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/password_input_layout2"
@@ -79,12 +82,13 @@
                 android:hint="@string/frag_signup_confirm_pass"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_input_field2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -96,12 +100,13 @@
                 android:hint="@string/frag_signup_mobile"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mobile_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -113,10 +118,14 @@
                 android:layout_marginLeft="10dp"
                 android:layout_height="wrap_content"
                 android:hint="@string/frag_signup_clas">
+
                 <AutoCompleteTextView
                     android:id="@+id/class_input_dropdown"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:keyboardNavigationCluster="false"
+                    android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,12 +138,13 @@
                 android:hint="@string/frag_signup_address"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 >
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/location_input_field"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textImeMultiLine"
-                    />
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signup_submit_button"

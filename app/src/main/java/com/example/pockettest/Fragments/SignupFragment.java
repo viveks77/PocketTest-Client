@@ -199,7 +199,8 @@ public class SignupFragment extends BottomSheetDialogFragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Oops! Something went wrong.", Toast.LENGTH_SHORT).show();
+                Log.d("onerror", error.toString());
+                Toast.makeText(context, "Something went wrong.", Toast.LENGTH_SHORT).show();
             }
         });
         VolleySingleton.getInstance(context).addToRequestQueue(jsonObjectRequest);

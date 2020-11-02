@@ -149,7 +149,7 @@ public class LoginFragment extends BottomSheetDialogFragment {
                         startActivity(new Intent(context, MainActivity.class));
                     }else{
                         AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                        alert.setTitle("Signup Successful.")
+                        alert.setTitle("Verification Required.")
                                 .setMessage("Please wait for verification from admin to proceed further")
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
@@ -179,7 +179,7 @@ public class LoginFragment extends BottomSheetDialogFragment {
                         JSONArray errorArray = obj.getJSONArray("non_field_errors");
                         Toast.makeText(context, "Incorrect Credentials", Toast.LENGTH_SHORT).show();
                     } catch (UnsupportedEncodingException e1) {
-                        Toast.makeText(context, "Oops!, Something went wrong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
                         e1.printStackTrace();
                     } catch (JSONException e2) {
                         Log.d("error message", "returned data is not JSONObject?");

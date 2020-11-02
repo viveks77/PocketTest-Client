@@ -9,7 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:liftOnScroll="true">
-
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:title="@string/lecutres"
+            android:titleTextColor="@android:color/white"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -57,6 +57,7 @@ public class QuizDetails extends BottomSheetDialogFragment {
     private TextView quizTitle;
     private TextView quizDesc;
     private TextView quizTotalMarks;
+    private TextView marksScored;
     private TextView quizLoading;
     private List<Questions> questionsList;
     private RecyclerView recyclerView;
@@ -82,6 +83,7 @@ public class QuizDetails extends BottomSheetDialogFragment {
         quizDesc  = view.findViewById(R.id.quiz_detail_desc);
         quizTotalMarks = view.findViewById(R.id.quiz_detail_total_marks);
         quizLoading = view.findViewById(R.id.quiz_detail_loading);
+        marksScored = view.findViewById(R.id.quiz_detail_marks_scored);
         quizTitle.setText(quiz.getTitle());
         quizDesc.setText(quiz.getDescription());
         quizTotalMarks.setText("Total Marks: "+ quiz.getTotal_marks());
@@ -97,13 +99,19 @@ public class QuizDetails extends BottomSheetDialogFragment {
 
     private void getQuizDetails(){
         questionsList.clear();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + Urls.GET_QUIZ_DETAILS + "/"+ quiz.getPrimary_key() + "/", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.BASE_URL + Urls.GET_QUIZ_DETAILS + quiz.getPrimary_key() + "/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 quizLoading.setVisibility(View.GONE);
                 try {
                     JSONObject parentObj = new JSONObject(response);
                     JSONObject quiz = parentObj.getJSONObject("quiz");
+                    Object userquiz = quiz.get("userquiz_set");
+                    if(userquiz.toString() != "false"){
+                        JSONObject user_quiz = (JSONObject) userquiz;
+                        marksScored.setText("Marks Scored : "+user_quiz.getString("score"));
+                        marksScored.setVisibility(View.VISIBLE);
+                    }
                     JSONArray questions = quiz.getJSONArray("questions");
                     for (int i = 0; i < questions.length(); i++) {
                         JSONObject questionObj = questions.getJSONObject(i);

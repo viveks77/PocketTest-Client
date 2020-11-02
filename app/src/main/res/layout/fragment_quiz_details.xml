@@ -52,6 +52,14 @@
             android:layout_marginVertical="5dp"
             android:layout_marginLeft="10dp"
             android:textColor="@android:color/black" />
+                    <TextView
+                        android:id="@+id/quiz_detail_marks_scored"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:visibility="gone"
+                        android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/quiz_detail_loading"

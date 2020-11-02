@@ -101,7 +101,8 @@ public class EditProfile extends AppCompatActivity {
                     finish();
                     startActivity(intent);
                 }catch(JSONException e){
-                    Snackbar.make(getWindow().getDecorView().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
+                    Log.d("Edit Profile", e.toString());
+                    Toast.makeText(EditProfile.this, "Something went wrong.", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
