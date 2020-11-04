@@ -1,11 +1,11 @@
 package com.example.pockettest.Util;
 
 public class Urls {
-    public static final String BASE_URL = "http://viks7.pythonanywhere.com/user/";
+    public static final String BASE_URL = "http://192.168.0.102:8000/user/";
     public static final String LOGIN_URL = "login";
     public static final String REGISTER_URL = "register";
     public static final String LOGOUT_URL = "logout";
-    public static final String GET_CLASS = "getClass";
+    public static final String GET_CLASS = "getclass";
     public static final String GET_SUBJECT = "getsubject";
     public static final String UPDATE_USER_URL = "update";
     public static final String GET_QUIZ = "/getquiz";

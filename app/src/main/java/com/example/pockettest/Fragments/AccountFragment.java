@@ -31,6 +31,11 @@ import com.example.pockettest.Model.User;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +51,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
     private TextView email;
     private TextView mobileNo;
     private UserDataBaseHandler db;
+    private AdView mAdView;
     public AccountFragment() {
         // Required empty public constructor
     }
@@ -67,6 +73,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         logOut = view.findViewById(R.id.account_logout);
         db = new UserDataBaseHandler(getActivity());
         User user = db.getUser();
+        MobileAds.initialize(view.getContext(), new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+
+        });
+        mAdView = view.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         email.setText(user.getEmail());
         name.setText(user.getName());
         mobileNo.setText("+91-"+user.getMobileNo());
@@ -75,6 +90,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener{
         givenQuizes.setOnClickListener(this);
         allquizes.setOnClickListener(this);
         logOut.setOnClickListener(this);
+
     }
 
     @Override

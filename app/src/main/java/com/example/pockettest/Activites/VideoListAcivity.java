@@ -1,11 +1,14 @@
 package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -59,6 +62,26 @@ public class VideoListAcivity extends AppCompatActivity {
         skeleton.setShimmerDurationInMillis(1000);
         fetchVideoList();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_search,menu);
+        MenuItem item=menu.findItem(R.id.search_filter);
+        SearchView searchView=(SearchView)item.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+
     private void fetchVideoList(){
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Urls.YOUTUBE_API_VIDEO_URL + playlistID + "&key="+ Urls.YOUTUBE_API_KEY, new Response.Listener<String>() {
             @Override
