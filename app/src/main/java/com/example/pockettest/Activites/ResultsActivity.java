@@ -2,10 +2,13 @@ package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -14,6 +17,12 @@ import android.widget.Toolbar;
 import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.Model.UserQuiz;
 import com.example.pockettest.R;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 public class ResultsActivity extends AppCompatActivity {
 
@@ -27,11 +36,14 @@ public class ResultsActivity extends AppCompatActivity {
     private Bundle bundle;
     private Quiz quiz;
     private UserQuiz userQuiz;
+    private InterstitialAd mInterstitialAd;
+    private DelayedProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
 
         toolbar = findViewById(R.id.result_toolbar);
         toolbar.setTitle("RESULT");
@@ -45,8 +57,28 @@ public class ResultsActivity extends AppCompatActivity {
 
         bundle = getIntent().getExtras();
         quiz = (Quiz) bundle.getSerializable("quiz");
-        userQuiz =  (UserQuiz) bundle.getSerializable("userquiz");
+        userQuiz = (UserQuiz) bundle.getSerializable("userquiz");
+        dialog = new DelayedProgressDialog();
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                finish();
+                startActivity(intent);
+            }
+
+        });
         quiz_name.setText(quiz.getTitle());
         quiz_desc.setText(quiz.getDescription());
         quiz_marks.setText(quiz.getTotal_marks());
@@ -55,10 +87,12 @@ public class ResultsActivity extends AppCompatActivity {
         go_to.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                finish();
-                startActivity(intent);
+            while(!mInterstitialAd.isLoaded())
+            {
+             dialog.show(getSupportFragmentManager(),"Please Wait...");
+            }
+              dialog.cancel();
+              mInterstitialAd.show();
             }
         });
 

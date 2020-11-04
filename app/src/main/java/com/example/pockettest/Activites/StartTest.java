@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import com.google.android.gms.ads.AdRequest;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,6 +24,10 @@ import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +47,7 @@ public class StartTest extends AppCompatActivity {
     private TextView desc;
     private TextView marks;
     private TextView publish_time;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,6 @@ public class StartTest extends AppCompatActivity {
         name = findViewById(R.id.start_test_name);
         desc = findViewById(R.id.start_test_description);
         marks = findViewById(R.id.start_total_marks);
-
         name.setText(quiz.getTitle());
         desc.setText(quiz.getDescription());
         marks.setText("Total marks : " +quiz.getTotal_marks());
@@ -62,7 +67,7 @@ public class StartTest extends AppCompatActivity {
         starttest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                starttest();
+             starttest();
             }
         });
 
@@ -71,6 +76,7 @@ public class StartTest extends AppCompatActivity {
         Intent intent=new Intent(StartTest.this,MainTest.class);
         intent.putExtra("quiz", quiz);
         startActivity(intent);
+
     }
 
 }
