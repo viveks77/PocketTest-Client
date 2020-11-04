@@ -19,6 +19,16 @@
             />
 
     </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/activity_all_test_list_adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3805686103431053/2527012294">
+    </com.google.android.gms.ads.AdView>
     <TextView
         android:id="@+id/alltest_list_textview"
         android:layout_width="match_parent"
@@ -35,4 +45,6 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"/>
+
+
 </LinearLayout>

@@ -22,6 +22,11 @@ import com.example.pockettest.Model.Quiz;
 import com.example.pockettest.R;
 import com.example.pockettest.Util.Urls;
 import com.example.pockettest.Util.VolleySingleton;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -36,6 +41,7 @@ import java.util.Map;
 
 public class AllTestListActivity extends AppCompatActivity {
     private List<Quiz> quizList;
+    private AdView mAdView;
     private RecyclerView recyclerView;
     private Toolbar toolbar;
     private TextView textView;
@@ -53,6 +59,14 @@ public class AllTestListActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(bundle.getString("name").toUpperCase());
             slug = bundle.getString("slug");
         }
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.activity_all_test_list_adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         textView = findViewById(R.id.alltest_list_textview);
         recyclerView = findViewById(R.id.alltest_list_recyclerview);
         quizList = new ArrayList<>();
