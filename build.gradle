@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020. Made by Vivek Surya and Raj Rathod. All Rights Reserved.
+ * Last Modified 15/11/20 12:40 PM
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {

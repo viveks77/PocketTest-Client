@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020. Made by Vivek Surya and Raj Rathod. All Rights Reserved.
+ * Last Modified 15/11/20 12:41 PM
+ */
+
 package com.example.pockettest.Fragments;
 
 import android.app.ProgressDialog;
@@ -140,7 +145,7 @@ public class LecturesFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("error", error.getMessage());
-                Snackbar.make(getActivity().findViewById(android.R.id.content), "Something went wrong. Please try again later", Snackbar.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something went wrong. Try again later.", Toast.LENGTH_SHORT).show();
             }
         });
 

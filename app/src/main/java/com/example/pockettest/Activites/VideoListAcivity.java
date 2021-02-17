@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020. Made by Vivek Surya and Raj Rathod. All Rights Reserved.
+ * Last Modified 15/11/20 12:39 PM
+ */
+
 package com.example.pockettest.Activites;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -72,7 +77,7 @@ public class VideoListAcivity extends AppCompatActivity {
         videoList = new ArrayList<>();
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(VideoListAcivity.this));
-        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.video_list, 5);
+        skeleton = SkeletonLayoutUtils.applySkeleton(recyclerView, R.layout.skeleton_video_list, 5);
         skeleton.showSkeleton();
         skeleton.setShimmerDurationInMillis(1000);
         fetchVideoList();

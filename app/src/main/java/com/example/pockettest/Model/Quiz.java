@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020. Made by Vivek Surya and Raj Rathod. All Rights Reserved.
+ * Last Modified 15/11/20 12:39 PM
+ */
+
 package com.example.pockettest.Model;
 
 import java.io.Serializable;

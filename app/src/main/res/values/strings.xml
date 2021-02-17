@@ -1,3 +1,8 @@
+<!--
+  ~ Copyright (c) 2020. Made by Vivek Surya and Raj Rathod. All Rights Reserved.
+  ~ Last Modified 15/11/20 12:39 PM
+  -->
+
 <resources>
     <string name="app_name">PocketTest</string>
 
@@ -54,6 +59,6 @@
     <string name="register_button">REGISTER</string>
     <string name="quiz_list_helper">TO</string>
     <string name="search_button">Search</string>
-    <string name="frag_ongoing_helper">No Quizes are here yet.</string>
+    <string name="frag_ongoing_helper">No quizes here yet.</string>
     <string name="activity_start_test_button">START TEST</string>
 </resources>
