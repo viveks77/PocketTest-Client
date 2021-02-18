@@ -2,6 +2,8 @@
 
 # Android Client for PocketTest
 
+## Checkout Pocket Test Server [here](https://github.com/vikS7/PocketTestServer)
+
 ## Screenshots
 
 ![Loginpage](screenshots/login.jpg)
@@ -12,7 +14,7 @@
 
 ![Lectures](screenshots/lectures.jpg)
 
-![Account Screen](screentshots/account.jpg)
+![Account Screen](screenshots/account.jpg)
 
 ![Main Test](screenshots/test.jpg)
 

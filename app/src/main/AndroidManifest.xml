@@ -53,7 +53,7 @@
             android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3805686103431053~5953135885"/>
+            android:value="YOUR ADSENSE KEY"/>
     </application>
 
 </manifest>
